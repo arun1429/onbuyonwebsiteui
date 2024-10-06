@@ -8,13 +8,13 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CheckoutService } from 'src/app/services/checkout.service';
-import { MetakeywordsService } from '../../_services/metakeywords.service';
-import { SEOService } from '../../_services/seo.service';
-import { GlobalService } from 'src/app/services/global.service';
-import { JsonLDService } from '../../_services//json-ld.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { HomeService } from 'src/app/services/home.service';
 import { StartService } from 'src/app/services/start.service';
+import { JsonLDService } from 'src/app/_services/json-ld.service';
+import { GlobalService } from 'src/app/services/global.service';
+import { SEOService } from 'src/app/_services/seo.service';
+import { MetakeywordsService } from 'src/app/_services/metakeywords.service';
 @Component({
   selector: 'app-vendor-products',
   templateUrl: './vendor-products.component.html',

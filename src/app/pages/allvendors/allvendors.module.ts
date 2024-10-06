@@ -8,8 +8,9 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { AllVendorsComponent } from './allvendors/allvendors.component';
 import { AllVendorsRoutingModule } from './allvendors-routing.module';
+import { VendorProductsComponent } from './vendors/vendor-products.component';
 @NgModule({
-  declarations: [AllVendorsComponent],
+  declarations: [AllVendorsComponent,VendorProductsComponent],
   imports: [
     CommonModule,
     NgxPaginationModule,

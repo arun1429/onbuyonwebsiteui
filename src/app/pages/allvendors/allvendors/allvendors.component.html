@@ -28,7 +28,7 @@
                         <article class="single_product" >
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" [routerLink]="['/vendors/all',vendor?.shopName]" >
+                                    <a class="primary_img" [routerLink]="['/vendors/',vendor?.shopName]" >
                                         <div class="itemimgdiv">
                                             <img src="{{vendor?.profileImg}}" alt="{{vendor?.shopName}}" class="itemsimg">
                                         </div>
@@ -41,7 +41,7 @@
                                     <div class="product_name">
                                         <h4>
                                             <a
-                                            [routerLink]="['/vendors/all',vendor?.shopName]">{{vendor?.shopName}}</a>
+                                            [routerLink]="['/vendors/',vendor?.shopName]">{{vendor?.shopName}}</a>
                                         </h4>
                                     </div>
                                     <div class="price_box">

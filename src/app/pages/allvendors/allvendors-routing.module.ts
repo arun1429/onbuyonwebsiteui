@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AllVendorsComponent } from './allvendors/allvendors.component';
+import { VendorProductsComponent } from './vendors/vendor-products.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
     },
     children: [
       { path: "", component: AllVendorsComponent, data: { title: 'Vendors' } },
+      { path: ":shopName", component: VendorProductsComponent, data: { title: 'Vendor Products' } },
     ]
   }
 ];

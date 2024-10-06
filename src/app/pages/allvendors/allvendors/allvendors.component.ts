@@ -35,6 +35,6 @@ export class AllVendorsComponent implements OnInit {
 
 
   viewVendor(shopName) {
-    this.router.navigateByUrl("/"+shopName);
+    this.router.navigateByUrl("/vendors/"+shopName);
   }
 }
