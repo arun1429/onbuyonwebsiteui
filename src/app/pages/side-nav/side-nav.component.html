@@ -1,0 +1,50 @@
+<div style="padding: 60px 0;">
+    <section class="container">
+        <section class="side-nav">
+            <div style="position: sticky; top: 100px;">
+                <div class="bg-white fbox group-h upper-img">
+                    <label class="fileContainer" style="cursor: pointer;">
+                        <img src="{{imgURL}}" alt="" class="img-circle" />
+                        <input type="file" accept="image/png, image/jpeg, image/jpg" (change)="fileUpload($event)" />
+                    </label>
+                    <div>
+                        <div class="bold">Hello,</div>
+                        <div class="bold lg" *ngIf="user.fullName">{{ user?.fullName }}</div>
+                        <div class="bold lg" *ngIf="!user.fullName">Guest</div>
+                    </div>
+                </div>
+                <div class="form-group" *ngIf="files">
+                    <button class="text-white" type="button" (click)="uploadProfilePic()">
+                        Upload
+                    </button>
+                </div>
+                <ul class="menu bg-white">
+                    <li routerLink="/profile/account" routerLinkActive="active" class="links">
+                        Profile Information
+                    </li>
+                    <li routerLink='/profile/order-history' routerLinkActive="active" class='links'> Order History</li>
+                    <li routerLink="/profile/address" routerLinkActive="active" class="links">
+                        Manage Addresses
+                    </li>
+                    <li routerLink="/profile/wallet" routerLinkActive="active" class="links">
+                        Your OnBuyOn Wallet
+                    </li>
+                    <li routerLink="/profile/notifications" routerLinkActive="active" class="links">
+                        Notifications
+                    </li>
+                </ul>
+                <div class="center p-y clickable text-white p-x-md logoutStyle pointer" (click)="logout()">
+                    Logout
+                </div>
+            </div>
+        </section>
+        <section>
+            <router-outlet></router-outlet>
+        </section>
+    </section>
+</div>
+
+
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>

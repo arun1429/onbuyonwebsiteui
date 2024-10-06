@@ -1,0 +1,556 @@
+<div class="container-pad">
+    <section class="container">
+        <ng-container>
+            <ng-container *ngIf="cart.length !== 0; else noData">
+                <div class="grid">
+                    <div>
+                        <div>
+                            <div class="header" (click)="collapse(1)" [class.active]="id === 1">
+                                <div class="fbox group-h">
+                                    <p class="circle" [class.bg-white]="id === 1">1</p>
+                                    <div class="item-list">
+                                        <div>Order Summary ({{ cart.length }} Item)</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button *ngIf="id !== 1" (click)="collapse(1)"
+                                        class="change-product">Change</button>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="id === 1">
+                                <div class="bg-white">
+                                    <ng-container *ngFor="let c of cart; let i = index">
+                                        <div class="contentGrid">
+                                            <div class="center">
+                                                <img [src]="c.variantImg ? c.variantImg[0] : 'https://res.cloudinary.com/appindia/image/upload/v1564388733/Dawai-frontend/dummy_mhlcin.webp'"
+                                                    class="productImage" alt="{{c.variantName}}"/>
+                                                <div class="fbox-c group-h ">
+                                                    <button class="circle"
+                                                        (click)="increaseDecreaseQuantity(c,-1,c.selectQuantity)">
+                                                        <div>-</div>
+                                                    </button>
+                                                    <div class="value">
+                                                        {{productSelectedQty[i]}}
+                                                    </div>
+                                                    <button class="circle"
+                                                        (click)="increaseDecreaseQuantity(c,1,c.selectQuantity)">
+                                                        <div>+</div>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="lg" style="font-size: 16px;">
+                                                    {{ c.productName }} 
+                                                </div>
+                                                <div  *ngIf="(c?.isBuyOne)" class="lg" style="font-size: 16px; font-weight: bold;">
+                                                    Buy 1 Get 1
+                                                </div>
+                                                <div class="fbox group-h m-t-lg" style="font-size: 14px;">
+                                                    <div class="" id="currentPrice{{ i }}">
+                                                        Qty: {{ c.selectQuantity }} X Rs.{{
+                                                        c.offerPrice?.toFixed(2) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="fbox-fe">
+                                                <button class="removeBtn" (click)="removeFromCart(c._id)">
+                                                    Remove
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <div class="fbox-fe save-continue">
+                                        <button class="saveButton" (click)="collapse(2)">
+                                            Save And Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div>
+                            <div class="header" (click)="collapse(2)" [class.active]="id === 2">
+                                <div class="fbox group-h">
+                                    <p class="circle" [class.bg-white]="id === 2">2</p>
+                                    <div class="item-list">Delivery Address</div>
+                                </div>
+                                <div>
+                                    <button *ngIf="id !== 2 && id !== 1" (click)="collapse(2)" class="change-product">
+                                        Change
+                                    </button>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="id === 2">
+                                <div class="bg-white">
+                                    <ng-container>
+                                        <section class="grid3">
+                                            <ng-container *ngFor="let a of addresses; let i = index">
+                                                <section style="cursor: pointer;" class="card"
+                                                    (click)="selectedAddress(a,i)">
+                                                    <header class="sm" [class.default]='addressIndex===i'
+                                                        [class.notDefault]="addressIndex!=i">
+                                                        <div class="address123">Address {{ i + 1 }} </div>
+                                                        <div class="capitalize address-type">{{ a.addressType }}</div>
+                                                    </header>
+                                                    <div class="content bg-grey">
+                                                        <div>
+                                                            <div>{{ a.fullName }}</div>
+                                                            <div>{{ a.mobileNo }}</div>
+                                                            <div>
+                                                                {{ a.streetAddress }} {{ a.city }} {{ a.state }}
+                                                                {{ a.country }} {{ a.pinCode }}
+                                                            </div>
+                                                            <div>{{ a.alternatePhone }}</div>
+                                                            <div>{{ a.landmark }}</div>
+                                                        </div>
+                                                        <footer class="fbox-fe">
+                                                            <div title="Edit Address" (click)="editAddressDiv(a)"
+                                                                class="edit-address">
+                                                                <svg version="1.1" id="Capa_1"
+                                                                    xmlns="http://www.w3.org/2000/svg"
+                                                                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                                                                    y="0px" viewBox="0 0 55.25 55.25"
+                                                                    style="enable-background:new 0 0 55.25 55.25;"
+                                                                    xml:space="preserve" class="icon fill-dark">
+                                                                    <path
+                                                                        d="M52.618,2.631c-3.51-3.508-9.219-3.508-12.729,0L3.827,38.693C3.81,38.71,3.8,38.731,3.785,38.749
+                                    c-0.021,0.024-0.039,0.05-0.058,0.076c-0.053,0.074-0.094,0.153-0.125,0.239c-0.009,0.026-0.022,0.049-0.029,0.075
+                                    c-0.003,0.01-0.009,0.02-0.012,0.03l-3.535,14.85c-0.016,0.067-0.02,0.135-0.022,0.202C0.004,54.234,0,54.246,0,54.259
+                                    c0.001,0.114,0.026,0.225,0.065,0.332c0.009,0.025,0.019,0.047,0.03,0.071c0.049,0.107,0.11,0.21,0.196,0.296
+                                    c0.095,0.095,0.207,0.168,0.328,0.218c0.121,0.05,0.25,0.075,0.379,0.075c0.077,0,0.155-0.009,0.231-0.027l14.85-3.535
+                                    c0.027-0.006,0.051-0.021,0.077-0.03c0.034-0.011,0.066-0.024,0.099-0.039c0.072-0.033,0.139-0.074,0.201-0.123
+                                    c0.024-0.019,0.049-0.033,0.072-0.054c0.008-0.008,0.018-0.012,0.026-0.02l36.063-36.063C56.127,11.85,56.127,6.14,52.618,2.631z
+                                    M51.204,4.045c2.488,2.489,2.7,6.397,0.65,9.137l-9.787-9.787C44.808,1.345,48.716,1.557,51.204,4.045z M46.254,18.895l-9.9-9.9
+                                    l1.414-1.414l9.9,9.9L46.254,18.895z M4.961,50.288c-0.391-0.391-1.023-0.391-1.414,0L2.79,51.045l2.554-10.728l4.422-0.491
+                                    l-0.569,5.122c-0.004,0.038,0.01,0.073,0.01,0.11c0,0.038-0.014,0.072-0.01,0.11c0.004,0.033,0.021,0.06,0.028,0.092
+                                    c0.012,0.058,0.029,0.111,0.05,0.165c0.026,0.065,0.057,0.124,0.095,0.181c0.031,0.046,0.062,0.087,0.1,0.127
+                                    c0.048,0.051,0.1,0.094,0.157,0.134c0.045,0.031,0.088,0.06,0.138,0.084C9.831,45.982,9.9,46,9.972,46.017
+                                    c0.038,0.009,0.069,0.03,0.108,0.035c0.036,0.004,0.072,0.006,0.109,0.006c0,0,0.001,0,0.001,0c0,0,0.001,0,0.001,0h0.001
+                                    c0,0,0.001,0,0.001,0c0.036,0,0.073-0.002,0.109-0.006l5.122-0.569l-0.491,4.422L4.204,52.459l0.757-0.757
+                                    C5.351,51.312,5.351,50.679,4.961,50.288z M17.511,44.809L39.889,22.43c0.391-0.391,0.391-1.023,0-1.414s-1.023-0.391-1.414,0
+                                    L16.097,43.395l-4.773,0.53l0.53-4.773l22.38-22.378c0.391-0.391,0.391-1.023,0-1.414s-1.023-0.391-1.414,0L10.44,37.738
+                                    l-3.183,0.354L34.94,10.409l9.9,9.9L17.157,47.992L17.511,44.809z M49.082,16.067l-9.9-9.9l1.415-1.415l9.9,9.9L49.082,16.067z" />
+                                                                </svg>
+                                                            </div>
+                                                            <div title="Delete Address"
+                                                                (click)="deleteAddress(a.addressId)"
+                                                                class="delete-address">
+                                                                <svg class="icon fill-dark"
+                                                                    viewBox="0 0 408.483 408.483">
+                                                                    <path
+                                                                        d="M87.748 388.784c.461 11.01 9.521 19.699 20.539 19.699h191.911c11.018 0 20.078-8.689 20.539-19.699l13.705-289.316H74.043l13.705 289.316zm159.907-217.455a8.35 8.35 0 0 1 8.35-8.349h13.355a8.351 8.351 0 0 1 8.35 8.349v165.293a8.35 8.35 0 0 1-8.35 8.349h-13.355a8.35 8.35 0 0 1-8.35-8.349V171.329zm-58.439 0a8.35 8.35 0 0 1 8.349-8.349h13.355a8.35 8.35 0 0 1 8.349 8.349v165.293a8.348 8.348 0 0 1-8.349 8.349h-13.355a8.348 8.348 0 0 1-8.349-8.349V171.329zm-58.441 0a8.35 8.35 0 0 1 8.349-8.349h13.356a8.35 8.35 0 0 1 8.349 8.349v165.293a8.349 8.349 0 0 1-8.349 8.349h-13.356a8.348 8.348 0 0 1-8.349-8.349V171.329zM343.567 21.043h-88.535V4.305A4.305 4.305 0 0 0 250.727 0h-92.971a4.305 4.305 0 0 0-4.304 4.305v16.737H64.916c-7.125 0-12.9 5.776-12.9 12.901V74.47h304.451V33.944c0-7.125-5.775-12.901-12.9-12.901z" />
+                                                                </svg>
+                                                            </div>
+                                                        </footer>
+                                                    </div>
+                                                </section>
+                                            </ng-container>
+                                            <section class="blankslate3" (click)="addNewAddressOnClick()">
+                                                <p>Add New Address</p>
+                                            </section>
+
+                                        </section>
+                                    </ng-container>
+                                    <ng-container *ngIf="addNewAddress === true"><br>
+                                        <div class="checkboxstyle">
+                                            <input type="checkbox" (click)="chooseLocation($event)" id="chooseLocation">
+                                            &nbsp; <label for="chooseLocation">Choose Current Location</label>
+                                        </div>
+                                        <form [formGroup]="addressForm"
+                                            (ngSubmit)="addAddress(addressForm.value,this.addressIndex)">
+                                            <div class="grid2">
+                                                <div class="form-group">
+                                                    <label class="block">Name</label>
+                                                    <input type="text" class="form-val block"
+                                                        placeholder="Enter Your Name" formControlName="fullName" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="block">Mobile Number</label>
+                                                    <input type="number" class="form-val block"
+                                                        placeholder="Enter Your Mobile Number"
+                                                        formControlName="mobileNo" inputmode="numeric"
+                                                        oninput="javascript: this.value = this.value.slice(0, this.maxLength)"
+                                                        maxlength="10" />
+                                                </div>
+                                                <div class="form-group span2">
+                                                    <label class="block">Address (Area and Street)</label>
+                                                    <textarea class="form-val block" rows="5" cols="60"
+                                                        placeholder="Enter Address" formControlName="streetAddress">
+                                                    </textarea>
+                                                </div>
+                                                <div class="form-group span2">
+                                                    <label class="block">GST (If any)</label>
+                                                    <input type="text" placeholder="Enter GST"
+                                                        formControlName="userGst">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="block">Pin Code</label>
+                                                    <input class="form-val block" type="number"
+                                                        placeholder="Enter Your Pincode" formControlName="pinCode"
+                                                        inputmode="numeric"
+                                                        oninput="javascript: this.value = this.value.slice(0, this.maxLength)"
+                                                        maxlength="6" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class=" block">State</label>
+                                                    <select class="form-val block" formControlName="state"
+                                                        (change)="chnageState($event)">
+                                                        <option value="" disabled>Please Select State</option>
+                                                        <option *ngFor="let state of states" value="{{state.state}}">
+                                                            {{state.state}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class=" block">City</label>
+                                                    <select class="form-val block" formControlName="city">
+                                                        <option value="" disabled>Please Select City</option>
+                                                        <option *ngFor="let city of cities" value="{{city}}">{{city}}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class=" block">Country</label>
+                                                    <select class="form-val block" formControlName="country">
+                                                        <option value="" disabled>Please Select Country</option>
+                                                        <option value="India">India</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="block">LandMark(Optional)</label>
+                                                    <input class="form-val block" type="text"
+                                                        placeholder="Enter Landmark" formControlName="landmark" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="block">Alternate Phone(Optional)</label>
+                                                    <input type="number" class="form-val block"
+                                                        placeholder="Enter Alternate Phone Number"
+                                                        formControlName="alternateMobileNo" inputmode="numeric"
+                                                        oninput="javascript: this.value = this.value.slice(0, this.maxLength)"
+                                                        maxlength="10" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="block address-type">Address Type</label>
+                                                    <div class="group-v">
+                                                        <div class="fbox group-h">
+                                                            <input type="radio" id="home" formControlName="addressType"
+                                                                value="HOME" />
+                                                            <label for="home" style="display: inline;">
+                                                                Home(All day delivery)
+                                                            </label>
+                                                        </div>
+                                                        <div class="fbox group-h">
+                                                            <input type="radio" id="office"
+                                                                formControlName="addressType" value="OFFICE" />
+                                                            <label for="office" style="display: inline;">
+                                                                Work(Delivery between 10AM - 5PM)
+                                                            </label>
+                                                        </div>
+                                                        <div class="fbox group-h">
+                                                            <input type="radio" id="other" formControlName="addressType"
+                                                                value="OTHER" />
+                                                            <label for="other" style="display: inline;">
+                                                                Other
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group fbox-fe" style='justify-content: center!important;'>
+                                                <button type="submit" class="saveButton"
+                                                    [disabled]="!addressForm.valid">
+                                                    Save Address
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </ng-container>
+                                    <div class="fbox-fe save-continue" style='margin-top:20px;'>
+                                        <button class="saveButton" (click)="collapse(3)">
+                                            Save And Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <!-- <div>
+                            <div class="header" (click)="collapse(3)" [class.active]="id === 3">
+                                <div class="fbox group-h">
+                                    <p class="circle" [class.bg-white]="id === 3">3</p>
+                                    <div class="item-list">
+                                        <div>Delivery Date And Time </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button *ngIf="id !== 3 && id !== 1 && id !== 2" (click)="collapse(3)"
+                                        class="change-product">Change</button>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="id === 3">
+                                <div class="bg-white">
+                                    <section class="p-y-md p-x-md">
+                                        <ul class="dateTime">
+                                            <li (click)="changeDate(date, i+1)"
+                                                *ngFor="let date of dateList; let i=index"
+                                                [class.active]="dateNumber === i+1"
+                                                [ngClass]="{timeDisabled: date.isEnable}">
+                                                {{date.date | date:'d MMM y'}}
+                                            </li>
+                                        </ul>
+
+                                        <ul style="overflow-y:hidden; max-height: 200px;" class="timing-set">
+                                            <li (click)="changeTime(time,i+1)"
+                                                *ngFor="let time of timeList; let i=index"
+                                                [class.active]="timeNumber === i+1"
+                                                [ngClass]="{timeDisabled: time.isEnable}">
+                                                {{time.time}}
+                                            </li>
+                                        </ul>
+                                    </section>
+                                    <div class="fbox-fe save-continue">
+                                        <button class="saveButton" (click)="collapse(4)">
+                                            Save And Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div> -->
+                        <div>
+                            <div class="header" (click)="collapse(3)" [class.active]="id === 3">
+                                <div class="fbox group-h">
+                                    <p class="circle" [class.bg-white]="id === 3">3</p>
+                                    <div class="item-list">Payment Options</div>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="id === 3">
+                                <div class="bg-white">
+                                    <section class="p-y-md p-x-md">
+                                        <div class="group-v">
+                                            <div class='fbox group-h'>
+                                                <input type="radio" id="cod" [value]="'cod'" name='payment'
+                                                    [(ngModel)]="paymentMethod"  (change)="getValidateCart()" />
+                                                <label class="payment-option" for="cod">
+                                                    Cash on Delivery or Pay on Delivery
+                                                </label>
+                                            </div>
+                                            <div class='fbox group-h'>
+                                                <input type="radio" id="wallet" [value]="'wallet'" name='payment'
+                                                    [(ngModel)]="paymentMethod" (change)="getValidateCart()"/>
+                                                <label class="payment-option" for="wallet">
+                                                    Wallet
+                                                </label>
+                                            </div>
+                                            <div class='fbox group-h'>
+                                                <input type="radio" id="online" [value]="'online'" name='payment'
+                                                    [(ngModel)]="paymentMethod"   (change)="getValidateCart()"/>
+                                                <label class="payment-option" for="online">
+                                                    Online
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <div class="fbox-fe">
+                                        <span style="font-size: 12px;">Order will not be cancelled after 24 hr.</span>
+                                        <br> <button type="button" [disabled]="!paymentMethod" class="saveButton"
+                                            (click)="checkPaymentMethod(paymentMethod)">
+                                            order place
+                                               </button> &nbsp;
+
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="group-v">
+                        <div  style="position: sticky;top: 10px;">
+                            <div class="col-md-12" style="padding-left: 1px; padding-right: 1px;">
+                                <div class="coupon_inner">
+                                    <input placeholder="Coupon code" name="discountName" [(ngModel)]="discountName"
+                                        type="text">
+
+                                </div>
+                            </div>
+                            <div class="col-md-12" style="margin-bottom: 15px;padding-left: 1px; padding-right: 1px;">
+                                <div class="coupon_inner_button ">
+                                    <button style=" margin-right: 2px;" type="submit" (click)="applyPromocode()">Apply</button>
+                                    <button style=" margin-left: 2px; background-color: #363f4d;"  type="submit" (click)="showCouponModal()">{{totalAvl}} available</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-x-md p-y-md" >
+                                <div class="lg1 o-70">
+                                    Price Details
+                                </div>
+    
+                                <div class="fbox-sb">
+                                    <div class="lg o-60">Price ({{ cart.length }} items)</div>
+                                    <div class="lg o-60">&#8377; {{ cartSum?.toFixed(2) }}</div>
+                                </div>
+                                <div class="fbox-sb">
+                                    <div class="lg o-60">Delivery</div>
+                                    <div class="lg o-60">+ &#8377; {{ deliveryCharges?.toFixed(2) }}</div>
+                                </div>
+                                <div class="fbox-sb" *ngIf="appliedPromocode && appliedPromocode.discountName">
+                                    <div class="lg o-60">Promo Code</div>
+                                    <div class="lg o-60">
+                                        ( {{appliedPromocode.discountName}} ) <span> - &#8377;</span> {{ totalDiscount?.toFixed(2) }}
+                                    </div>
+                                </div>
+                                <div class="fbox-sb total-payable">
+                                    <div>
+                                        <div class="lg o-85 bold">Total Payable (Including GST)</div>
+                                        <small class="xs text-primary clickable"
+                                            *ngIf="appliedPromocode && appliedPromocode.discountName"
+                                            style="display: block;">Promo
+                                            Applied</small>
+    
+                                        <small class="xs text-error clickable" (click)="removePromocode()"
+                                            *ngIf="appliedPromocode && appliedPromocode.discountName">Remove Promocode to
+                                            apply another</small>
+                                            
+                                    </div>
+                                    <div class="lg o-85 bold">&#8377; {{ total?.toFixed(2)}}</div>
+                                </div>
+    
+                                <div class='fbox-sb'>
+                                    <div class='lg o-85 bold'>Wallet Amount</div>
+                                    <div class='lg o-85 bold'>&#8377; {{walletAmount?.toFixed(2)}}</div>
+                                </div>
+                                <div class='fbox-sb' *ngIf='remainingWalletAmountStatus'>
+                                    <div class='lg o-85 bold'>Remaining Wallet Amount</div>
+                                    <div class='lg o-85 bold'>
+                                        &#8377;{{remainingWalletAmount.toString()==='NaN'?checkWalletAmount(total):remainingWalletAmount.toFixed(2)}}
+                                    </div>
+                                </div>
+                                <div class='fbox-sb' *ngIf="requiredWalletAmountStatus">
+                                    <div class='lg o-85 bold'>Required Wallet Amount</div>
+                                    <div class='lg o-85 bold'>
+                                        &#8377;{{requiredWalletAmount.toString()==='NaN'?checkWalletAmount(total):requiredWalletAmount.toFixed(2)}}
+                                    </div>
+                                </div>
+                                <hr class="customizeHR" />
+                                <div class="center" style="color: var(--primary-dark)">
+                                    You will save &#8377; {{ totalDiscount?.toFixed(2) }} on this order.
+                                </div>
+                                <div class="center" style="color: #000; font-weight: bold;">
+                                    Free delivery above &#8377; {{ freeDelivery?.toFixed(2) }}
+                                </div>
+                                <div *ngIf='walletBenefitMessage != null' class="center" style="color: #000; font-weight: bold;">
+                                    {{ walletBenefitMessage }}
+                                </div>
+                                
+                                <div class='justifySpaceBetween' style='justify-content: center!important;'>
+                                    <button type='button' class='saveButton' (click)='addMoney()'>
+                                        Recharge Wallet
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </section>
+</div>
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>
+<ng-template #noData>
+    <div class="blankslate2">
+        Please add items to your cart to buy
+    </div>
+</ng-template>
+
+<!-- Start Validate modal -->
+<div class="modal fade" id="validateCartModal" tabindex="-1" role="dialog" aria-labelledby="validateCartModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="validateCartModalLabel">Please remove from cart!</h5>
+                <button type="button" class="close" (click)="hideValidateModal()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="cart_item" *ngFor="let item of notDeliverableItems; let i = index">
+                    <div class="cart_img">
+                        <a (click)="hideValidateModal()" [routerLink]="['/product-details',item.pvariantSlug]">
+                            <img src="{{item?.variantImg[0]}}" alt="{{item?.variantName}}">
+                        </a>
+                    </div>
+                    <div class="cart_info">
+                        <a (click)="hideValidateModal()"
+                            [routerLink]="['/product-details',item.variantSlug]">{{item?.productName}}</a>
+                        <p>Qty: {{item?.selectQuantity}} X <span> ₹{{item?.offerPrice}} </span></p>
+                        <p style="color: red;">Undeliverble on selected address</p>
+                    </div>
+                    <div class="cart_remove">
+                        <a href="javascript:void(0)" (click)="removeFromCart(item._id)">
+                            <i class="ion-android-close"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="hideValidateModal()">Close</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- End Validate modal -->
+
+<!-- Coupen Modal -->
+<div class="modal fade" id="coupenModal" tabindex="-1" aria-labelledby="coupenModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="coupenModalLabel">All Coupons</h5>
+                <button type="button" style="border: none; left: 91%;" class="close" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="list-group" *ngIf="promocodes">
+                    <a (click)="selectCoupon(promocode)" class="list-group-item list-group-item-action"
+                        [ngClass]="{'active': appliedPromocode && appliedPromocode.discountId===promocode.discountId?true:false}"
+                        *ngFor="let promocode of promocodes">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{promocode?.discountName}}</h5>
+                        </div>
+                        <p class="mb-1" *ngIf="promocode?.discountIn==='ABSOLUTE'">
+                            {{promocode?.discountNumber | currency:"INR":"symbol"}} off on entire order
+                        </p>
+                        <p class="mb-1" *ngIf="promocode?.discountIn==='PERCENTAGE'">
+                            {{promocode?.discountNumber}}% on entire order
+                        </p>
+                        <p class="mb-1" *ngIf="promocode?.minimumCartType==='CART AMOUNT'">
+                            Minimum purchase of {{promocode?.minimumCartValue | currency:"INR":"symbol"}}
+                        </p>
+                        <p class="mb-1" *ngIf="promocode?.minimumCartType==='CART ITEM'">
+                            Minimum purchase of {{promocode?.minimumCartValue}} items
+                        </p>
+                        <p class="mb-1" >
+                            Can’t combine with other discounts
+                        </p>
+                        <p class="mb-1" style="color: red;" *ngIf="promocode?.isEnable==='less cart amount'">
+                           Add {{promocode?.valuechanges | currency:"INR":"symbol"}} more to avail this offer
+                        </p>
+                        <p class="mb-1" style="color: red;" *ngIf="promocode?.isEnable==='less no of items'">
+                            Add {{promocode?.valuechanges}} more items to avail this offer
+                         </p>
+                        <small>
+                            Valid Upto: {{promocode?.validUpto | date}}
+                        </small>
+                    </a>
+                </div>
+                <p *ngIf="!promocodes"> No Promocode Found </p>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+<!-- <ngx-spinner bdColor="rgba(17, 16, 16, 0.781)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner> -->

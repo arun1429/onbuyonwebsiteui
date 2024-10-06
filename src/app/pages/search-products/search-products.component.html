@@ -1,0 +1,64 @@
+<div class="breadcrumbs_area mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">Search</span><meta itemprop="position" content="2" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="shop_area shop_reverse mt-45 mb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+
+                <!--shop toolbar end-->
+                <div class="row shop_wrapper">
+                    <div class="col-lg-3 col-md-3 col-12 "
+                        *ngFor="let product of products  | paginate:{ itemsPerPage: 12, currentPage: currentPageNumber }">
+                        <article class="single_product" *ngIf="product.stock!==0">
+                            <figure>
+                                <div class="product_thumb">
+                                    <a class="primary_img" [routerLink]="['/product-details',product.variantSlug]" >
+                                        <div class="itemimgdiv">
+                                            <img src="{{product?.variantImg[0]}}" alt="{{product?.variantName}}" class="itemsimg">
+                                        </div>
+                                    </a>
+                                    <div class="quick_button">
+                                        <a (click)="addToCart(product)" title=" Add to Cart"> Add to Cart</a>
+                                    </div>
+                                </div>
+                                <div class="product_content">
+                                    <div class="product_name">
+                                        <h4><a
+                                                [routerLink]="['/product-details',product.variantSlug]">{{product?.productName}}</a>
+                                        </h4>
+                                    </div>
+                                    <div class="price_box">
+                                        <span class="current_price">₹{{product?.offerPrice}}</span>&nbsp;
+                                        <span class="old_price">₹{{product?.price}}</span>
+                                        <span  style="font-size: 14px;" >{{getDiscount(product?.offerPrice,product?.price)}}% Off </span>
+                                    </div>
+                                </div>
+                            </figure>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="shop_toolbar t_bottom">
+                    <!-- <pagination-controls (pageChange)="currentPageNumber = $event" maxSize="5" previousLabel="Prev"
+                        responsive="true" nextLabel="Next"></pagination-controls> -->
+                </div>
+                <!--shop toolbar end-->
+                <!--shop wrapper end-->
+            </div>
+        </div>
+    </div>
+</div>

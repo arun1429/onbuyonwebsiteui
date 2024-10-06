@@ -1,0 +1,67 @@
+<div class="breadcrumbs_area mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">My account</span><meta itemprop="position" content="2" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="customer_login mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 offset-3" *ngIf="step === 1">
+                <div class="account_form login">
+                    <h2>login</h2>
+                    <form [formGroup]="loginForm" >
+                        <p>
+                            <label>Email/Mobile <span>*</span></label>
+                            <input type="text" formControlName="loginId"  placeholder="Please Enter Email/Mobile">
+                        </p>
+                        <p>
+                            <label>Password <span>*</span></label>
+                            <input [type]="fieldTextType ? 'text' : 'password'" formControlName="password"  placeholder="Please Enter Password">   <span class="p-viewer">
+                                <i class="fa" aria-hidden="true" [ngClass]="{
+                                    'fa-eye-slash': !fieldTextType,
+                                    'fa-eye': fieldTextType
+                                  }"
+                                  (click)="toggleFieldTextType()"></i>
+                            </span>
+                        </p>
+                        
+                        <div class="login_submit">
+                            <button2 [routerLink]="['/register']" routerLinkActive="router-link-active">Create New Account</button2>
+                            <button type="submit" [disabled]="!loginForm.valid" (click)="login()">login</button>
+                            <!-- <button (click)="signInWithGoogle()" class="addtopspace">signin with google</button> -->
+                        </div>
+                        <div class="login_submit" style="margin-top: 20px;">
+                            <button [routerLink]="['/forgotpassword']" routerLinkActive="router-link-active" >forgot password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 offset-3"  *ngIf="step === 2">
+                <div class="account_form login">
+                    <h2>Otp Verify</h2>
+                    <form [formGroup]="otpForm" (ngSubmit)="otpVerify()">
+                        <p>
+                            <label>OTP <span>*</span></label>
+                            <input type="number" formControlName="otp" placeholder="Enter Otp Here">
+                        </p>
+                        <div class="login_submit">
+                            <a (click)="loginOtp()">Resend OTP</a>
+                            <button type="submit" [disabled]="!otpForm.valid">submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

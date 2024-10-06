@@ -1,0 +1,523 @@
+<div class="breadcrumbs_area mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+					<ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">{{productDetails?.productName}}</span><meta itemprop="position" content="2" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product_details variable_product mt-45 mb-50">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <!-- <div class="product-details-tab">
+                    <div id="" >
+                        <div class="container align-items-center">
+                            <owl-carousel-o [options]="productCarouseloption4"  #owlcar (change)="getData($event)">
+                                <ng-container *ngFor="let image of productDetails?.variant[selectedVariantIndex]?.variantImg">
+                                    <ng-template carouselSlide [id]="image">
+                                        <article class="">
+                                            <img [src]="image"  style="height:100%; width:100%; object-fit: cover;">
+                                        </article>
+                                    </ng-template>
+                                </ng-container>
+                            </owl-carousel-o>
+                        </div>
+                            <ng-image-slider
+                              #nav
+                              [images]="imageObject"
+                              [imagePopup]="false"
+                              [infinite]="false"
+                              [autoSlide]="1"
+                              [defaultActiveImage]="1"
+                              [imageSize]="{ width: '20%', height: 100 }"
+                              slideImage="1"
+                              (imageClick)="imageClickHandler($event)"
+                            ></ng-image-slider>
+                    </div>
+                    
+                  
+                </div> -->
+                <div class="product-details-tab">
+                    <div id="img-1" >
+                        <a>
+                            <img [src]="newImg"  style="height:100%; width:100%; object-fit: cover;">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2" *ngFor="let image of productDetails?.variant[selectedVariantIndex]?.variantImg" style="display: inline;float: left; border: 1px solid grey; margin-top: 3px;cursor: pointer; margin-left: 2px;height: 75px; width: 75px;margin-bottom: 15px; ">
+                  <img [src]="image" (click)="setImg(image)" style="height:100%;width:100%; object-fit: cover;" alt="{{productDetails?.variant[selectedVariantIndex]?.variantName}}" >
+                </div>
+
+            </div>
+            <div class="col-lg-6 col-md-6">
+                 <div class="product_d_right">
+                    <form>
+                        <h5><a href="#">{{productDetails?.productName}}</a></h5>
+                        <div class="product_desc">
+                            <p>{{variantName}} </p>
+                        </div>
+                        <div class="product_rating">
+                            <ul>
+                                <li *ngFor="let i of getReviewStar(variantRating)">
+                                    <a href="javascript:void(0)" class='deactiveClass' [class.activeClass]="i"><i class="fa fa-star" aria-hidden="true"></i></a>
+                                </li>
+                                <li class="review"><a (click)="scrollDiv('myTab')"> (customer review ) </a></li>
+                            </ul> 
+                        </div>
+                        <div class="price_box">
+                            <span
+                                class="current_price">₹{{productDetails?.variant[selectedVariantIndex]?.offerPrice}}</span>
+                                <span class="old_price ml-2">₹{{productDetails?.variant[selectedVariantIndex]?.price}}</span> 
+                                <span class="saleBtn" *ngIf="discountStatus">Save ₹{{(productDetails?.variant[selectedVariantIndex]?.price - productDetails?.variant[selectedVariantIndex]?.offerPrice).toFixed(2)}}
+                            </span>
+                                <span class="pcs" *ngIf="(productDetails?.variant[selectedVariantIndex]?.pcs >= 1)">({{productDetails?.variant[selectedVariantIndex]?.pcs}} Pcs)</span>
+                          
+                            <!-- <br><br>
+                                <span *ngIf="productDetails?.gst"> GST @{{productDetails?.gst}}% Inclusive Price : ₹{{productDetails?.variant[selectedVariantIndex]?.offerPrice}} </span> -->
+                        </div>    
+                        <div class="product_variant quantity">
+
+                            <div class="input-group my-3" style="width: 32%;">
+                                <div class="input-group-prepend">
+                                  <span class="input-group-text" style="background-color: #dd1567; cursor: pointer; color: white;"  (click)="decrement()">-</span>
+                                </div>
+                                <span style="width: 25px; text-align: center; font-size: 1.2rem; margin:auto;">{{ selectedQuanity }}</span>
+                                
+                                <div class="input-group-append">
+                                  <span class="input-group-text" style="background-color: #dd1567; cursor: pointer; color: white;"  (click)="increment()">+</span>
+                                </div>
+                              </div>
+
+
+                            <!-- <label>quantity</label>
+                            <div>
+                                <button (click)="decrement()">-</button>
+                                <span>{{ selectedQuanity }}</span>
+                                <button (click)="increment()">+</button>
+                              </div> -->
+                                <button class="button" type="submit" style="background-color: #dd1567;" (click)="buyNow(productDetails)">
+                                    Buy Now
+                                </button>
+                            <button class="button" type="submit" (click)="addToCart(productDetails)">
+                                add to cart
+                            </button>
+                        </div>
+                        <div class=" product_d_action">
+                            <ul>
+                                <li>
+                                    <span class="cart_icon" *ngIf="isWishListStatus != true" (click)="addToWishList(productDetails)" title="Add to wishlist">
+                                        Add to Wishlist <i class="ion-heart"></i>
+                                    </span>
+                                    <span class="cart_icon_remove" *ngIf="isWishListStatus == true" (click)="addToWishList(productDetails)" title="Remove wishlist">
+                                        Remove  Wishlist  <i class="ion-heart"></i>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+
+                    <div class="product_d_meta">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span>Brand: <a href="#">{{productDetails?.brand}}</a></span>
+                                <span>Vendor Name: <a href="#">{{productDetails?.vendorName}}</a></span>                         
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label class="text-bold block">Choose Variant</label>
+                                    <select class="form-control shadow-none select" [(ngModel)]="selectedVariantIndex" 
+                                        (ngModelChange)="changeVariant($event,productDetails)">
+                                        <option *ngFor="let variant of productDetails?.variant; let i=index"  
+                                            [value]="i">{{variant?.variantName}}</option>
+                                    </select>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <span style="color: black; font-weight: bold;" *ngIf="(productDetails?.isBuyOne)">Best Offer: Buy 1 Get 1 </span>
+                                <span>Model: {{productDetails?.variant[selectedVariantIndex]?.sku?productDetails?.variant[selectedVariantIndex]?.sku:'N/A'}}</span>
+                                <span>Category: <a href="#">{{productDetails?.categoryName}}</a></span>
+                                <span>Sub Category: <a href="#">{{productDetails?.subCategoryName}}</a></span>
+                            </div>
+                          
+                        </div>
+                        <div class="row" style="margin-top: 10px;" *ngIf="productDetails?.categoryId == '65aaba800af25e301ddb5094'">
+                            <div class="col-md-12">
+                                <div class="form-group-child">
+                                    <label class="text-bold2 block">Select Card</label>
+                                    <select class="form-control selectcard" [(ngModel)]="selectedIndexCard" 
+                                        (ngModelChange)="changeCartType($event,cartTypeArray)">
+                                        <option *ngFor="let cartTypes of cartTypeArray; let i=index" 
+                                        [value]="i">{{cartTypes?.cardName}}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group-child">
+                                    <label class="text-bold2 block">Personalised Message</label>
+                                    <input  value="{{personalisedMessage}}" type="text" placeholder="Personalised Message"
+                                       (change)="changePerMessage($event)">
+                                </div>
+                                <div class="form-group-child">
+                                    <label class="text-bold2 block">TO</label>
+                                    <input  value="{{giftTo}}" type="text" placeholder="To Whom"
+                                   (change)="changeGiftTo($event)">
+                                </div>
+                                <div class="form-group-child">
+                                    <label class="text-bold2 block">From</label>
+                                    <input value="{{giftFrom}}" type="text" placeholder="From Whom"
+                                    (change)="changeGiftFrom($event)">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="mt-2 product_variant quantity arrow" style="border-top: 1px solid #ebebeb;">
+                            <input min="1" style="min-width: 100px;"  class="mt-3 ml-0" [(ngModel)]="pincode" name="pincode" placeholder="Pincode"
+                                type="number">
+                            <button class="mt-3 button" type="button" (click)="checkPincode()">
+                                Check Pincode
+                            </button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="single_slider d-flex align-items-center" style="margin-bottom: 60px; justify-content: center;">
+                    
+<video *ngIf="productDetails?.videoUrl!=null" style="width: 1180px;align-self: center;  justify-content: center;"    controls  class=" sliderBanDesk" src="{{productDetails?.videoUrl}}" type="video/mp4" >
+    
+</video>
+<video *ngIf="productDetails?.videoUrlMobile!=null" style="width: 380px;align-self: center; justify-content: center;"    controls class="sliderBanMobile" src="{{productDetails?.videoUrlMobile}}" type="video/mp4" type="video/mp4" >
+</video>
+</div>
+<!--product info start-->
+<div class="product_d_info mb-45" >
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product_d_inner">
+                    <div class="product_info_button">
+                        <ul class="nav" id="myTab" role="tablist">
+                            <li>
+                                <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info"
+                                    aria-selected="false">Description </a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet"
+                                    aria-selected="false">Specification</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
+                                    aria-selected="false">Reviews ({{reviews.length}})</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="info" role="tabpanel">
+                            <div class="product_info_content" >
+                                <div innerHtml="{{productDetails?.shortDescription}}">
+                                    <!-- {{productDetails?.shortDescription}} -->
+                                </div>
+                                <div innerHtml="{{productDetails?.description}}">
+                                    <!-- {{productDetails?.description}} -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="sheet" role="tabpanel">
+                            <div class="product_d_table">
+                                <form>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="first_child">Variant Name</td>
+                                                <td>{{productDetails?.variant[selectedVariantIndex]?.variantName}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">Size</td>
+                                                <td>{{productDetails?.variant[selectedVariantIndex]?.size}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">Colour</td>
+                                                <td>{{productDetails?.variant[selectedVariantIndex]?.color}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first_child">Material</td>
+                                                <td>{{productDetails?.variant[selectedVariantIndex]?.material}}</td>
+                                            </tr>
+                                            <tr
+                                            *ngFor="let attribute of productDetails?.variant[selectedVariantIndex]?.attributes">
+                                            <td class="first_child">
+                                                {{attribute?.name}}</td>
+                                            <td>{{attribute?.value}} <span *ngIf="attribute.unit!=' '">{{attribute?.unit}}</span></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="product_info_content">
+                                <!-- <p>{{productDetails?.shortDescription}}</p> -->
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <div class="reviews_wrapper">
+                                <h3 *ngIf="productDetails?.totalReviews!==0">{{productDetails?.totalReviews}} review</h3>
+                                <div class="reviews_comment_box" *ngFor="let review of reviews">
+                                    <div class="comment_thmb">
+                                    </div>
+                                    <div class="comment_text">
+                                        <div class="reviews_meta">
+                                            <div class="product_rating">
+                                                <ul>
+                                                    <li *ngFor="let i of getReviewStar(review.rating)">
+
+                                                        <a href="#" class='deactiveClass' [class.activeClass]="i"><i class="fa fa-star" aria-hidden="true"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <p><strong>{{review?.userName}} </strong>- {{review?.createdAt | date}}</p>
+                                            <span>{{review?.review}} </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="comment_title">
+                                    <h3>Add a review </h3>
+                                    <p>Your email address will not be published. Required fields are marked </p>
+                                </div>
+                                <div class="product_rating_inactive mb-10">
+                                    <h3>Your rating</h3>
+                                    <ul>
+                                        <li *ngFor="let bb of ratingArray;let i=index">
+                                            <a (click)="selectRating(bb.rating,i)">
+                                                <i class="fa fa-star add-new-class{{i}} remove" aria-hidden="true">
+                                                </i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- <div class="product_review_form">
+                                    <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label for="review_comment">Your review </label>
+                                                <textarea name="comment" formControlName="review"
+                                                    id="review_comment"></textarea>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <label for="author">Name</label>
+                                                <input id="author" formControlName="userName" type="text">
+
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <label for="email">Email </label>
+                                                <input id="email" formControlName="userEmailId" type="text">
+                                            </div>
+                                        </div>
+                                        <button type="submit"
+                                            [ngClass]="{isDisabled: !reviewForm.valid || !ratingsByUser}"
+                                            [disabled]="!reviewForm.valid || !ratingsByUser">Submit</button>
+                                    </form>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product_area product_style2 mb-10">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product_header">
+                    <div class="section_title">
+                        <h2>RECOMMENDED PRODUCTS</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <owl-carousel-o [options]="productCarouseloption2" class="product_carousel product_style prodSlider">
+            <ng-container *ngFor="let product of products">
+                <ng-template carouselSlide [id]="product.productId">
+                    <article class="single_product">
+                        <figure>
+                            <div class="product_thumb" style="margin-bottom: 0;">
+                                <a class="primary_img" [routerLink]="['/product-details',product.variantSlug]" >
+                                    <div class="itemimgdiv">
+                                        <img src="{{product?.variantImg[0]}}" alt="{{product?.variantName}}" class="itemsimg">
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="product_name">
+                                <h4><a
+                                        [routerLink]="['/product-details',product.variantSlug]" >{{product?.productName}}</a>
+                                </h4>
+                            </div>
+                            <div class="price_box" style="padding-left: 5px;">
+                                <span class="current_price">₹{{product?.offerPrice}}</span>&nbsp;
+                                <span class="old_price">₹{{product?.price}}</span>
+                                <span  style="font-size: 14px;" >{{getDiscount(product?.offerPrice,product?.price)}}% Off </span>
+                            </div>
+                        </figure>
+                    </article>
+                </ng-template>
+            </ng-container>
+        </owl-carousel-o>
+    </div>
+</div>
+<div class="shipping_area mb-50 mt-50 ">
+    <div class="container">
+        <div class="firstshipping row">
+            <div class="col-lg-3 col-md-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone shipping_main_item">
+                        <img src="assets/img/shipping1.png" alt="Shipping">
+                    </div>
+                    <div class="shipping_content">
+                        <h4>Shipping</h4>
+                        <p>Pan India delivery</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone shipping_main_item">
+                        <img src="assets/img/shipping2.png" alt="Online Support">
+                    </div>
+                    <div class="shipping_content">
+                        <h4>Online Support 24/7</h4>
+                        <p>Support online 24 hours a day</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="firstshipping row"  >
+            <div class="col-lg-3 col-md-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone shipping_main_item">
+                        <img src="assets/img/shipping3.png" alt="East Returns">
+                    </div>
+                    <div class="shipping_content">
+                        <h4>Easy Returns</h4>
+                        <p>Easy returns and money back guaranteed*                     </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="single_shipping">
+                    <div class="shipping_icone shipping_main_item">
+                        <img src="assets/img/shipping4.png" alt="Payment Secure">
+                    </div>
+                    <div class="shipping_content">
+                        <h4>100% Payment Secure</h4>
+                        <p>We ensure secure payment with PEV</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--product info end-->
+
+<!--product schema microdata--->
+<div>
+    <div itemtype="https://schema.org/Product" itemscope>
+      <meta itemprop="mpn" content="{{productDetails?.variant[selectedVariantIndex]?.sku?productDetails?.variant[selectedVariantIndex]?.sku:'N/A'}}" />
+      <meta itemprop="name" content="{{productDetails?.productName}}" />
+	  <div *ngFor="let image of productDetails?.variant[selectedVariantIndex]?.variantImg">
+		<link itemprop="image" [href]="image | safe"/>
+	  </div>
+      <meta itemprop="description" content="{{productDetails?.description}}" />
+      <div itemprop="offers" itemtype="https://schema.org/AggregateOffer" itemscope>
+        <meta itemprop="lowPrice" content="{{productDetails?.variant[selectedVariantIndex]?.offerPrice}}" />
+        <meta itemprop="highPrice" content="{{productDetails?.variant[selectedVariantIndex]?.price}}" />
+        <meta itemprop="offerCount" content="{{productDetails?.variant[selectedVariantIndex]?.price > productDetails?.variant[selectedVariantIndex]?.offerPrice ? 1 : 0}}" />
+        <meta itemprop="priceCurrency" content="INR" />
+      </div>
+      <div *ngIf="productDetails?.totalReviews>0" itemprop="aggregateRating" itemtype="https://schema.org/AggregateRating" itemscope>
+        <meta itemprop="reviewCount" content="{{productDetails?.totalReviews}}" />
+        <meta itemprop="ratingValue" content="{{productDetails?.overAllRating}}" />
+      </div>
+      <div *ngIf="productDetails?.totalReviews>0" itemprop="review" itemtype="https://schema.org/Review" itemscope>
+        <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+          <meta itemprop="name" content="{{productDetails?.reviews[0]?.userName}}" />
+        </div>
+        <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
+          <meta itemprop="ratingValue" content="{{productDetails?.reviews[0]?.rating}}" />
+          <meta itemprop="bestRating" content="5" />
+        </div>
+      </div>
+      <meta itemprop="sku" content="{{productDetails?.variant[selectedVariantIndex]?.sku?productDetails?.variant[selectedVariantIndex]?.sku:'N/A'}}" />
+      <div itemprop="brand" itemtype="https://schema.org/Brand" itemscope>
+        <meta itemprop="name" content="{{productDetails?.brand}}" />
+      </div>
+    </div>
+</div>
+<!--product schema microdata end--->
+
+<!-- Start Quote Modal -->
+<div class="modal fade" id="quoteModal" tabindex="-1" role="dialog" aria-labelledby="quoteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="quoteModalLabel">Quote Now</h5>
+                <button type="button" class="close" style="border: none; left: 91%;" data-dismiss="modal"
+                    aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- <div class="modal-body">
+                <form [formGroup]="quoteFormGroup">
+                    <div class="form-group">
+                        <label for="productName" class="col-form-label">Product Name:</label>
+                        <input type="text" class="form-control"
+                            value="{{productDetails?.variant[selectedVariantIndex]?.variantName}}" disabled
+                            id="productName">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity" class="col-form-label">Quantity:</label>
+                        <input type="number" class="form-control" formControlName="quantity" id="quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="userName" class="col-form-label">User Name:</label>
+                        <input type="text" class="form-control" formControlName="fullName" id="userName">
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail" class="col-form-label">User Email:</label>
+                        <input type="text" class="form-control" formControlName="userEmailId" id="userEmail">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile" class="col-form-label">Mobile No:</label>
+                        <input type="text" class="form-control" formControlName="mobileNo" id="mobile">
+                    </div>
+                </form>
+            </div> -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" [disabled]="!quoteFormGroup.valid"
+                    (click)="getQuote()">Get Quote</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <ngx-spinner bdColor="rgba(17, 16, 16, 0.781)" size="default" type="ball-spin-clockwise">
+    <p style="color: white">Please Wait. </p>
+</ngx-spinner> -->
+<!-- End Quote Modal -->
+

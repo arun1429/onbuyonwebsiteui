@@ -1,0 +1,179 @@
+.walletRectangle{
+    height: 275px;
+    width: 533px;
+    background: #000000;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #888889;
+  }
+  .circle{
+      height: 50px;
+    width: 50px;
+    background-color: #000000;
+    border-radius: 50%;
+    border:2px solid #ffffff;
+    position: relative;
+    top: -40px;
+    cursor: pointer;
+  }
+  .circle:hover{
+    box-shadow: 2px 3px 10px 3px;
+    background-color: #3E444A;
+  }
+  .alignItemCenter{
+      align-items: center;
+  }
+  .justifyCenter{
+      justify-content: center;
+      display: flex;
+  }
+  .justifyCenter button:hover{
+    background: #3E444A;
+  }
+  .whiteColor{
+      color:#ffffff;
+      text-align: center;
+  }
+  .plusIcon{
+      height:25px;
+      width:25px;
+      fill:#ffffff;
+  }
+  input{
+      color:#000000;
+  }
+  .walletDiv{
+      background-color:#77B922;
+      color:#ffffff;
+  }
+  
+  .addAmountDiv{
+      border:1px solid #cccccc;
+      background:#ffffff;
+      border-radius: 16px;
+      width:600px;
+      padding:16px;
+  }
+  .addAmountDiv h1{
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 20px;
+    margin-bottom: 15px;
+  }
+  .addAmountDiv input{
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 40px;
+    padding: 0 15px;
+  }
+  .moneyDiv{
+      border:1px solid #cccccc;
+      padding:5px 15px; 
+      cursor: pointer;
+  }
+  .justifySpaceBetween{
+      justify-content: space-between;
+  }
+  .margin-top-bottom{
+      margin-top:16px;
+      margin-bottom:16px;
+  }
+  
+  
+  .walletDivStyle{
+      padding-top:3rem;
+      padding-bottom:3rem;
+      border-radius: 1em;
+  }
+  .grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap:20px;
+  }
+  .text-align-center{
+      text-align: center;
+  }
+  .font-size-24{
+      font-size:24px;
+  }
+  .font-size-32{
+      font-size:32px;
+  }
+  table{
+      width:100%;
+      background:#ffffff;
+      border:1px solid #cccccc;
+  }
+  table tr td{
+      padding: 12px;
+  }
+  .displayFlex{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color:#FFB500;
+      color:#ffffff;
+      padding:16px;
+      border:1px solid #ffffff;
+      border-radius: 5px;
+      margin-bottom:15px;
+      font-size: 16px;
+      font-weight: 700;
+  }
+  .margin-left{
+      margin-left:20px;
+  }
+  
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+      .walletRectangle{
+          height:150px;
+          width:300px;
+          background-size: cover;
+      }
+      .addAmountDiv{
+          width:auto;
+      }
+      .contentFontSize{
+          font-size:18px;
+      }
+      .circle{
+          top:-30px;
+      }
+      .headingMarginTop{
+          margin-top:50px;
+          margin-left: 20px;
+      }
+      .tableWidth{
+          width:330px;
+          overflow: scroll;
+      }
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+  }
+  
+  .transaction-history{
+    background: #dd1567;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: 0;
+    padding: 8px 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff !important;
+    margin-bottom: 15px;
+
+  }
+  .add-money{
+    background: #dd1567;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: 0;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff !important;
+  }

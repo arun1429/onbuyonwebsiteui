@@ -1,0 +1,95 @@
+<section>
+    <div>
+        <h1 class='headingMarginTop font-size-24'>Wallet</h1>
+    </div>
+
+    <div class='justifyCenter' style="margin-top: 58px;">
+        <div class='walletRectangle justifyCenter alignItemCenter '>
+            <div>
+                <div class='font-size-32 whiteColor'>
+                    Available Balance
+                </div>
+                <div *ngIf="walletAmount !=0 " class='font-size-32 whiteColor' style="margin-top: 20px;">
+                    &#8377;{{walletAmount.toFixed(2)}}
+                </div>
+                <div *ngIf="walletAmount ==0 " class='font-size-32 whiteColor' style="margin-top: 20px;">
+                    &#8377;0
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='justifyCenter'>
+        <div class='circle justifyCenter alignItemCenter' (click)="showAddMoneyDiv()">
+            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px" viewBox="0 0 42 42" style="enable-background:new 0 0 42 42;" xml:space="preserve"
+                class='plusIcon'>
+                <polygon points="42,20 22,20 22,0 20,0 20,20 0,20 0,22 20,22 20,42 22,42 22,22 42,22 " />
+            </svg>
+        </div>
+    </div>
+    <div class='justifyCenter'>
+        <button (click)="showTxnHistory()" class="transaction-history">Transaction History</button>
+    </div>
+
+    <div class='justifyCenter'>
+        <div [hidden]="!showAddMoney" class='addAmountDiv'>
+            <h1>
+                Add Amount
+            </h1>
+            <div>
+                <div id="payment">
+                    <input type="number" class='block form-val' value="{{amount}}" #money>
+                    <div class='justifyCenter justifySpaceBetween'>
+                        <ng-container *ngFor="let money of [100,300,500,1000]">
+                            <div (click)="selectMoney(money)" class='moneyDiv margin-top-bottom'>{{money}}</div>
+                        </ng-container>
+                    </div>
+                    <div>
+                        <button type='submit' (click)="initPay(money.value)" class="add-money">
+                            Add Money
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf='txnHistoryShow'>
+        <ng-container>
+            <div>
+                <h4>Transaction History</h4>
+            </div>
+            <div class='tableWidth' *ngIf="txnHistory.length">
+                <table  class="mb-2">
+                    <tr>
+                        <td>
+                            Payment ID/Order ID
+                        </td>
+                        <td>Method</td>
+                        <td>Amount</td>
+                        <td>Currency</td>
+                        <td>Payment Type</td>
+                        <td>Transaction Type</td>
+                        <td>Created At</td>
+                    </tr>
+                    <ng-container
+                        *ngFor="let txnData of txnHistory | paginate:{ itemsPerPage: 10, currentPage: currentPageNumber }">
+                        <tr>
+                            <td>{{txnData.orderID}}</td>
+                            <td>{{txnData.paymentMethod}}</td>
+                            <td>{{txnData.amount.toFixed(2)}}</td>
+                            <td>INR</td>
+                            <td>{{txnData.txnType==='Order placed'?"Debit":"Credit"}}</td>
+                            <td>{{txnData.txnType}}</td>
+                            <td>{{txnData?.createdAt | date}}</td>
+                        </tr>
+                    </ng-container>
+                </table>
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            </div>
+            <div class='tableWidth' *ngIf="!txnHistory.length">
+                No Transaction Found
+            </div>
+        </ng-container>
+    </div>
+
+</section>

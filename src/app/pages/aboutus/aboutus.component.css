@@ -1,0 +1,62 @@
+
+.bodycontent
+{
+	position: relative;
+	margin: 15px 0 50px;
+}
+.bodycontent h1
+{
+	font-size: 35px;
+	margin: 0 0 10px;
+	font-family: 'molla';
+	font-weight: 900;
+}
+.bodycontent h2
+{
+	font-size: 35px;
+	margin: 0 0 10px;
+	font-family: 'molla';
+	font-weight: 900;
+}
+.bodycontent p
+{
+	font-size: 15px;
+	margin: 0 0 10px;
+}
+.bodycontent ol
+{
+	list-style: decimal;	
+	margin: 0 0 35px 25px;
+}
+.bodycontent ol li, ul li
+{
+	font-size: 15px;
+	margin: 0 0 10px;
+}
+.bodycontent ul
+{
+	list-style: disc;
+	margin: 0 0 35px 25px;
+}
+
+@media  (max-width: 480px) {
+	.bodycontent
+{
+	position: relative;
+	margin: 10px 0 20px;
+}
+.bodycontent h1
+{
+	font-size: 22px;
+	margin: 0 0 10px;
+	font-family: 'molla';
+	font-weight: 900;
+}
+.bodycontent h2
+{
+	font-size: 22px;
+	margin: 0 0 10px;
+	font-family: 'molla';
+	font-weight: 900;
+}
+ }

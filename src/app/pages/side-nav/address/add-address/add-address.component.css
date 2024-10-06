@@ -1,0 +1,109 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 1em 2em;
+  }
+  * {
+    color: var(--primary-dark) !important;
+  }
+  
+  .span2 {
+    grid-column: span 2;
+  }
+.form-group {
+    margin-bottom: 5px;
+}
+label{
+    color: #000;
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+    display: block;
+}
+input {
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+    width: 100%;
+    border: 1px solid #ccc;
+    height: 40px;
+    padding: 0 15px;
+}
+select {
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 40px;
+  padding: 0 15px;
+}
+textarea {
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 80px;
+  padding: 0 15px;
+}
+section.card{
+  border: 0;
+}
+.fbox.group-h{
+  padding-bottom: 10px;
+}
+.fbox.group-h input{
+  height: 20px;
+  width: auto;
+  float: left;
+  margin-right: 6px;
+}
+header{
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+.cancel{
+  background: #000000;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 0;
+  padding: 8px 20px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff !important;
+}
+.save{
+  background: #dd1567;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: 0;
+  padding: 8px 20px;
+  margin-top: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff !important;
+  margin-right: 5px;
+}
+.type-address{
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+.checkboxstyle input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  position: relative;
+  top: 2px;
+  margin-right: 10px;
+}
+.checkboxstyle label{
+  position: relative;
+  top: -18px;
+  left: 20px;
+}
+@media only screen and (max-width: 767px){
+  .grid{display: block;}
+}

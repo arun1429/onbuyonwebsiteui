@@ -1,0 +1,46 @@
+<ng-container>
+    <section class="card">
+        <header class="heading-panel-right-side" >Personal Information</header>
+        <div class="content">
+            <div>
+                <form [formGroup]="editForm"  class="account-info">
+                    <div class="grid">
+                        <div class="form-group"><label for="">Enter Full Name</label>
+                            <input type="text" class="form-val block" placeholder="Enter You Full Name"
+                                formControlName="fullName" />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Gender</label>
+                            <select class="form-val block" formControlName="gender">
+                                <option value="" selected disabled>Please Select</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="others">Others</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Email</label>
+                            <input type="email" class="form-val block" placeholder="Enter Email"
+                                formControlName="userEmailId" />
+                        </div>
+                        <div class="form-group">
+                            <label for="">Mobile</label>
+                            <input type="text" class="form-val block" placeholder="Enter Mobile"
+                                formControlName="mobileNo"/>
+                                <!-- <span style="font-size: 12px;" *ngIf="!editForm.valid">Mobile number should be 10 digits</span> -->
+                        </div>
+                    </div>
+                    <div class="form-group group-h center m-t-lg text-white">
+                        <button [disabled]="!editForm.valid" class="text-white" (click)="edit()">
+                            Update
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</ng-container>
+
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>

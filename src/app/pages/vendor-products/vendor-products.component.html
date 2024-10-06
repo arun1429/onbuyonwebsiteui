@@ -1,0 +1,161 @@
+<div class="breadcrumbs_area mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">{{shopName}}</span><meta itemprop="position" content="2" /></li>
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="slider_section slider_s_three" *ngIf="banners.length">
+    <owl-carousel-o [options]="bannerCarouselOption" class="slider_area">
+        <ng-container *ngFor="let homeBanners of banners">
+            <ng-template carouselSlide [id]="homeBanners._id">
+                <div class=" d-flex align-items-center">
+                    
+                    <video *ngIf="homeBanners?.mediaType ==  'Video' " style="width: 1440px; " loop muted autoplay oncanplay="this.play()" onloadedmetadata="this.muted = true" class="d-block w-100 sliderBanDesk">
+                        <source src="{{homeBanners?.bannerImg}}" type="video/mp4">
+                    </video>
+                    <video *ngIf="homeBanners?.mediaType ==  'Video' " style="width: 800px; " loop muted autoplay oncanplay="this.play()" onloadedmetadata="this.muted = true" class="d-block w-100 sliderBanMobile">
+                        <source src="{{homeBanners?.bannerMobileImg}}" type="video/mp4">
+                    </video>
+                    <img *ngIf="(homeBanners?.mediaType ==  'Image' || homeBanners?.mediaType ==  'Gif')" src="{{homeBanners?.bannerImg}}" class="d-block w-100 sliderBanDesk" alt="{{homeBanners?.title}}">
+                    <img *ngIf="(homeBanners?.mediaType ==  'Image' || homeBanners?.mediaType ==  'Gif')" src="{{homeBanners?.bannerMobileImg}}" class="d-block w-100 sliderBanMobile" alt="{{homeBanners?.title}}">
+                </div>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+</section>
+<div class="shop_area shop_reverse mt-45 mb-50">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-3 col-md-12">
+                <img src="{{contactDetails?.profileImg}}" alt="contactDetails?.shopName">
+                <!-- {{filterCity}} -->
+                <aside class="sidebar_widget">
+                    <div class="widget_list widget_categories">
+                        <h3>Product categories</h3>
+                        <ul>
+                            <li *ngFor="let category of categories; let i = index;">
+                                <a
+                                    (click)="getProductByCategoryId(category.categorySlug, i)">{{category?.categoryName}}</a>
+                                <span class="dropIndex" *ngIf="selectedIndex != i" (click)="checkSelectedIndex(i)"><i
+                                        class="ion-android-arrow-dropright" style="font-size: 25px;"></i></span>
+                                <span class="dropIndex" *ngIf="selectedIndex == i" (click)="checkSelectedIndex(-1)"><i
+                                        class="ion-android-arrow-dropdown" style="font-size: 25px;"></i></span>
+                                <ul *ngIf="selectedIndex == i">
+                                    <li *ngFor="let subCategory of category.subCategory" ><a *ngIf="subCategory.status==='ACTIVE'" (click)="getProductByCategoryId(subCategory.subCategorySlug, i)">{{subCategory?.subCategoryName}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="widget_list widget_filter">
+                        <h3>Sort By</h3>
+                        <ul>
+                            <li><a (click)="sort('offerPrice',false)">Low to High</a></li>
+                            <li><a (click)="sort('offerPrice',true)">High to Low</a></li>
+                            <li><a (click)="sort('createdAt',true)">Newest First</a></li>
+                        </ul>
+                        
+                    </div>
+                    <div class="widget_list widget_filter">
+                        <h3>Filter by price</h3>
+                        <form action="#">
+                            <div>
+                                <ngx-slider  [(value)]="minPrice" [(highValue)]="maxPrice" [options]="options">
+                                </ngx-slider>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="widgets_container contact_us">
+                        <h3>Contact Info</h3>
+                        <div class="footer_contact">
+                            <p>
+                                <a href="javascript:void(0)">
+                                    {{contactDetails?.mobileNo?contactDetails?.shopName:'--'}}
+                                </a>
+                            </p>
+                           
+                            <p>
+                                <a href="https://api.whatsapp.com/send?phone={{contactDetails?.mobileNo}}&text=Hi">
+                                    WhatsApp Us
+                                </a>
+                            </p>
+                            <p>
+                                <a href="javascript:void(0)"> {{contactDetails?.vendorEmailId?contactDetails?.vendorEmailId:'--'}}
+                                </a>
+                            </p>
+                            <p>{{contactDetails?.shopAddress.address}} {{contactDetails?.shopAddress.city}} {{contactDetails?.shopAddress.landmark}} {{contactDetails?.shopAddress.state }} {{contactDetails?.shopAddress.pincode}}</p>
+                        </div>
+                       
+                    </div>
+                </aside>
+            </div>
+            <div class="col-lg-9 col-md-12">
+             
+                
+                <div class="product-grid">
+                    <ng-container *ngFor="let product of products | filter: minPrice:maxPrice | sorting: sortingElement: sortingType | paginate:{ itemsPerPage: 12, currentPage: currentPageNumber }; trackBy:trackByProductId">
+                        <div class="product-grid-item"  *ngIf="product.stock!==0">
+                        <article class="single_product" >
+                            <figure>
+                                <div class="product_thumb">
+                                    <a class="primary_img"  [routerLink]="['/product-details',product.variantSlug]" >
+                                        <div class="itemimgdiv">
+                                            <img src="{{product?.variantImg[0]}}" alt="{{product?.variantName}}" class="itemsimg">
+                                        </div>
+                                    </a>
+                                    <div class="quick_button">
+                                        <a (click)="addToCart(product)" title=" Add to Cart"> Add to Cart</a>
+                                    </div>
+                                </div>
+                                <div class="product_content">
+                                    <div class="product_name">
+                                        <h4>
+                                            <a
+                                                [routerLink]="['/product-details',product.variantSlug]" >{{product?.productName}}</a>
+                                        </h4>
+                                    </div>
+                                    <div class="price_box">
+                                        <span class="current_price">₹{{product?.offerPrice}}</span>&nbsp;
+                                        <span class="old_price">₹{{product?.price}}</span>
+                                        <span  style="font-size: 14px;" >{{getDiscount(product?.offerPrice,product?.price)}}%Off </span>
+                                    </div>
+                                </div>
+                            </figure>
+                        </article>
+                    </div>
+                </ng-container>
+                </div>
+                <!-- <div class="row shop_wrapper">
+                    <div class="col-lg-4 col-md-4 col-12 "
+                        >
+                        
+                    </div>
+                </div> -->
+                <div class="shop_toolbar t_bottom" *ngIf="products.length !=0  ">
+                    <pagination-controls (pageChange)="currentPageNumber = $event" maxSize="5" previousLabel="Prev"
+                        responsive="true" nextLabel="Next"></pagination-controls>
+                </div>
+                <div  class="shop_toolbar t_bottom"   *ngIf="products.length ==0 && isNoData == false">
+                    <img src="assets/img/noproduct.png" alt="No Product">
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="section_title1 section_content " [class.show]="show"  style="margin-top: 20px;" innerHtml="{{currentContent?.description}}">
+        </div>
+        <button class="readmoreBtn" *ngIf="currentContent?.description != null" (click)="show = !show">{{ show ? 'Read Less': 'Read More' }}</button>
+    </div>
+   
+</div>

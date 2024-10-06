@@ -1,0 +1,39 @@
+User-agent: *
+Disallow: /
+https://onbuyon.in/blogs/Office-Wear-Artificial-Jewellery-for-Working-Women
+https://onbuyon.in/product-details/bow-love-milky-studs-
+https://onbuyon.in/blogs/jewellery-with-black-dress
+https://onbuyon.in/product-details/bow-love-milky-studs-
+https://onbuyon.in/product-details/toqlife---evil-eye-golden-bracelet
+https://onbuyon.in/product-details/unisex-perfumes
+https://onbuyon.in/product-details/round-cut-hoop-metal-earrings
+https://onbuyon.in/product-details/charming-black-zircon-pendent-with-chain
+https://onbuyon.in/product-details/unisex-perfumes-men-women
+https://onbuyon.in/product-details/daisy-ring-black-danglers
+https://onbuyon.in/blogs/Fashion-Jewellery-Every-Girl-Must-Have
+https://onbuyon.in/product-details/oblong-elegance-drop-earrings--black-silver
+https://onbuyon.in/product-details/multi-stone-rose-gold-chain-bracelet
+https://onbuyon.in/product-details/double-drop-heart-solitaire-pendant-with-link-chain
+https://onbuyon.in/product-details/-tree-life-rose-gold-bracelet
+https://onbuyon.in/product-details/aqua-chimes-layered-bracelet
+https://onbuyon.in/product-details/feather-stud-white-copper-earrings
+https://onbuyon.in/product-details/silver-plated-artificial-stoned-studs
+https://onbuyon.in/product-details/dual-floret-gold-plated-ring
+https://onbuyon.in/product-details/angelic-orbit-pendant
+https://onbuyon.in/product-details/studded-dome-shape-black-silver-earrings
+https://onbuyon.in/product-details/-drop-crystal-chain-earrings---silver
+https://onbuyon.in/product-details/cinderella-evil-eye-layered-rose-gold-chain-bracelet
+https://onbuyon.in/product-details/graceful-floral-rose-gold-studs
+https://onbuyon.in/product-details/unisex-perfume-gift-set
+https://onbuyon.in/product-details/petal-with-pearl-drop-black-earrings
+https://onbuyon.in/product-details/gucci-watch-style-golden-bracelet-
+https://onbuyon.in/product-details/daisy-cluster-geometric-drops---black
+https://onbuyon.in/product-details/unisex-perfume
+https://onbuyon.in/product-details/studded-dome-shape-black---copper-earrings
+https://onbuyon.in/product-details/unisex-luxury-perfume
+https://onbuyon.in/blogs/Fashion-Jewellery-Every-Girl-Must-Have
+https://onbuyon.in/blogs/Stylish-Ways-to-Wear-Toq-Bracelets-for-Women
+
+allow: /
+
+Sitemap: https://onbuyon.in/sitemap.xml

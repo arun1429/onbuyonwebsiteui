@@ -1,0 +1,273 @@
+::ng-deep app-header{
+    display: block;
+}
+::ng-deep app-footer{
+    display: block;
+}
+::ng-deep app-side-nav{
+    display: block;
+}
+body {
+    background-color: #f2f3f7;
+}
+div {
+    color: #000000;
+}
+.font-size-24{
+    font-size:24px;
+}
+h4{
+    padding-bottom: 30px;
+}
+
+
+.orderIDSection{
+    background-color:#000000;
+    padding:15px 16px;
+    border-top-left-radius: 0px;
+}
+.text-color-white{
+    color:#ffffff;
+}
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+    align-items: center;
+    justify-content: center;
+ 
+}
+
+.productImage {
+    width: 100px;
+    height: auto;
+  }
+.lowerDiv{
+    background-color:#F8F5F6;
+    padding:10px 16px;
+    border-bottom-left-radius: 0px;
+    margin-top: 0px;
+    margin-bottom:0rem;
+}
+.padding-top-bottom{
+    padding-top:0px;
+    /* padding-bottom:16px; */
+}
+.button-details{
+    padding:0 15px;
+}
+.button-details .details{
+    background: #dd1567;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: 0;
+    padding: 8px 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+    margin-right: 5px;
+}
+.button-details .cancel{
+    background: #000000;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: 0;
+    padding: 8px 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
+}
+.button-details button:hover{
+    background: #3E444A;
+  }
+.whiteBackground{
+    background-color:#ffffff;
+    border:0px solid #cccccc;
+    border-radius:0px;
+    position: relative;
+    margin-top:0px;
+}
+.order-history-new{
+    border: 1px solid #e6e6e6;
+    margin-bottom: 30px;
+    margin-top: 28px;
+}
+.needHelpButton{
+    background-color: transparent;
+    margin-top:0px;
+    border:1px solid #cccccc;
+    color:#000000;
+    padding:8px 20px;
+    border-radius: 0px;
+}
+.font-size-16{
+    font-size:16px;
+}
+.font-weight-400{
+    font-weight: 400;
+}
+.padding-16{
+    padding:16px;
+}
+.font-size-20{
+    font-size:20px;
+}
+.opacity-80{
+    opacity: 80%;
+}
+.font-size-18{
+    font-size:18px;
+}
+.font-size-14{
+    font-size:14px;
+}
+.padding-top-10{
+    padding-top:10px;
+}
+/**Accordion CSS*/
+
+.panel{
+    background-color:#000000;
+    padding:10px 16px;
+    border-bottom-left-radius: 0px;
+}
+.displayFlex{
+    display: flex;
+    justify-content: space-between;
+}
+.panelHeading{
+    color:#ffffff;
+}
+.panelIcon{
+    height:25px;
+    width:25px;
+    cursor: pointer;
+}
+.displayNone{
+    display: none;
+}
+.displayBlock{
+    display: block;
+}
+
+/**Progress Bar*/
+
+.circle{
+    height:20px;
+    width:20px;
+    background-color: #cccccc;
+    border-radius: 100%;
+}
+.line{
+    height:5px;
+    width:120px;;
+    background-color: #cccccc;
+}
+.parent:last-child{
+    display: none;
+}
+/* .line:last-child{
+   display: none;
+} */
+
+.label{
+    width:20%;
+    margin-left: -16px;
+}
+.active{
+    background-color:#77b920;
+}
+.inActive{
+    background-color: #F23233;
+}
+.activeText{
+    color:#77b920;
+}
+.inActiveText{
+    color:#F23233;
+}
+
+.orangeActive{
+    background-color: orange;
+}
+.orangeActiveLineClass{
+    background-color: orange;
+}
+.progressDivHeight{
+    height:100px;display:flex;justify-content: center;align-items:center;
+}
+.bottom-border-radius{
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px
+}
+.font-weight-700{
+    font-weight:700
+}
+
+.modal-content button.close {
+    position: inherit;
+    left: 94%;
+    width: inherit;
+    height: inherit;
+    line-height: inherit;
+    display: block;
+    border: none;
+    top: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 30px;
+    z-index: 9;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .grid-container{
+        grid-template-columns: 1fr;
+    }
+    .line{
+        width:45px;
+    }
+    .labelFont{
+        font-size:12px;
+    }
+    .imageCenterMobile{
+        text-align: center;
+    }
+    .displayInherit{
+        display: inherit;
+    }
+    .margin-top-bottom{
+        margin-top:30px;
+        margin-bottom:30px;
+    }
+    .label{
+        width:5%;
+        margin-left: -5px;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .line{
+        width:120px;
+    }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+    .grid-container{
+        grid-template-columns: 1fr;
+    }
+    .line{
+        width:45px;
+    }
+    .labelFont{
+        font-size:12px;
+    }
+    .imageCenterMobile{
+        text-align: center;
+    }
+    .displayInherit{
+        display: inherit;
+    }
+
+}
+@media only screen and (max-width: 767px){
+    .grid{display: block;}
+  }

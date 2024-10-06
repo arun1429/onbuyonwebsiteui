@@ -1,0 +1,60 @@
+<div class="breadcrumbs_area mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">My account</span><meta itemprop="position" content="2" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="customer_login mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 offset-3">
+                <div class="account_form login">
+                    <h2>Register</h2>
+                    <form [formGroup]="registerFormGroup">
+                        <p>
+                            <label>User Name <span style="color: red;">*</span></label>
+                            <input type="text" formControlName="userName"  placeholder="Please Enter User Name">
+                        </p>
+                        <p>
+                            <label>Full Name <span style="color: red;">*</span></label>
+                            <input type="text" formControlName="fullName"  placeholder="Please Enter Full Name">
+                        </p>
+                        <p>
+                            <label>User Email Id (Optional)</label>
+                            <input type="email" formControlName="userEmailId"  placeholder="Please Enter User Email Id">
+                        </p>
+                        <p>
+                            <label>Mobile Number<span style="color: red;">*</span></label>&nbsp;
+                            <span class="setFornt">(Please check and enter)</span>
+                            <input type="number" formControlName="mobileNo"  placeholder="Please Enter Mobile Number">
+                        </p>
+                        <p>
+                            <label>Password<span style="color: red;">*</span></label>&nbsp;
+                            <span class="setFornt">(Please check and enter)</span>
+                            <input [type]="fieldTextType ? 'text' : 'password'" formControlName="password"  placeholder="Please Enter Password">   <span class="p-viewer">
+                                <i class="fa" aria-hidden="true" [ngClass]="{
+                                    'fa-eye-slash': !fieldTextType,
+                                    'fa-eye': fieldTextType
+                                  }"
+                                  (click)="toggleFieldTextType()"></i>
+                            </span>
+                        </p>
+                        <div class="login_submit">
+                            <button type="submit" [disabled]="!registerFormGroup.valid" (click)="register()">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

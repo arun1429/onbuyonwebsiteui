@@ -1,0 +1,25 @@
+<div class="breadcrumbs_area mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" style="margin-left: 10px;"><span itemprop="name">About Us</span><meta itemprop="position" content="2" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="container">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xs-12">
+            <div class="bodycontent">
+                <h1>About us</h1>
+                <p innerHTML="{{allContentDetails?.aboutDetails}}"></p>
+            </div>
+        </div>
+    </div>
+</section>

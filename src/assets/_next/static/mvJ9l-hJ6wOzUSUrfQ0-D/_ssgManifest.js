@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fplugins","\u002Fcompare\u002F[competitor]","\u002Fplugins\u002F[pluginUUID]","\u002Fsell\u002F[link]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()

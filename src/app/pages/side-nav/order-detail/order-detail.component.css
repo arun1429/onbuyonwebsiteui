@@ -1,0 +1,160 @@
+div {
+    color: #000000;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-details {
+    padding: 60px 0;
+}
+
+.whiteBackground {
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.productImageSize {
+    height: 100px;
+    width: 100px;
+}
+
+.bottomBorder {
+    border-bottom: 1px solid #cccccc;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+.sectionHeading {
+    color: #000000;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.addressDiv {
+    /* width:30%;
+    display:flex;
+    justify-content: space-between; 
+    align-items: center;*/
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+h4 {
+    padding-bottom: 25px;
+}
+
+.productNameData {
+    width: 300px;
+    text-overflow: clip;
+}
+
+table {
+    width: 100%!important;
+}
+
+table tr td {
+    /* text-align: left !important; */
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+table tr th {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+table {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.font-size-24 {
+    font-size: 24px;
+}
+
+.font-weight-700 {
+    font-weight: 700
+}
+
+.font-size-18 {
+    font-size: 18px;
+}
+
+.font-size-16 {
+    font-size: 16px;
+}
+
+.displayFlex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .addressDiv {
+        width: 100%;
+    }
+    .headingFontSize {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .addressDiv {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .addressDiv {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .grid {
+        display: block;
+    }
+}
+
+.boxDiv {
+    margin: 1px;
+    border: 1px solid #000000;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px;
+    margin-block: 5px;
+}
+
+.selectedBoxDiv {
+    /* margin: 1px; */
+    border: 1px solid #fbb700
+}
+
+.btn2 {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 10px;
+}

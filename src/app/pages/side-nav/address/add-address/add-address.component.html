@@ -1,0 +1,106 @@
+<section class="card">
+    <header>Add/Edit Address</header>
+    <div class="content">
+        <form [formGroup]="addressForm" (ngSubmit)="actionOnAddress(addressForm.value)">
+            <div class="grid">
+                <div class="form-group">
+                    <label class="block">Name</label>
+                    <input type="text" class="form-val block" placeholder="Enter Your Name"
+                        formControlName="fullName" />
+                </div>
+                <div class="form-group">
+                    <label class="block">Mobile Number</label>
+                    <input type="number" class="form-val block" placeholder="Enter Your Mobile Number"
+                        formControlName="mobileNo" inputmode="numeric"
+                        oninput="javascript: this.value = this.value.slice(0, this.maxLength)" maxlength="10" />
+                </div>
+                <div class="checkboxstyle">
+                    <input  type="checkbox" (click)="chooseLocation($event)" id="chooseLocation">
+                     <label for="chooseLocation">Choose Current Location</label>
+                </div>
+                <div class="form-group span2">
+                    <label class="block">Address (Area and Street)</label>
+                    <textarea class="form-val block" rows="5" cols="60" placeholder="Enter Address"
+                        formControlName="streetAddress">
+                </textarea>
+                </div>
+                <div class="form-group span2">
+                    <label class="block">GST (If any)</label>
+                    <input type="text" placeholder="Enter GST"
+                        formControlName="userGst">
+                
+                </div>
+                <div class="form-group">
+                    <label class="block">Pin Code</label>
+                    <input class="form-val block" type="number" placeholder="Enter Your Pincode"
+                        formControlName="pinCode" inputmode="numeric"
+                        oninput="javascript: this.value = this.value.slice(0, this.maxLength)" maxlength="6" />
+                </div>
+                <div class="form-group">
+                    <label class=" block">State</label>
+                    <select class="form-val block" formControlName="state" (change)="chnageState($event)">
+                        <option value="" disabled>Please Select State</option>
+                        <option *ngFor="let state of states" value="{{state.state}}" >{{state.state}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class=" block">City</label>
+                    <select class="form-val block" formControlName="city">
+                        <option value="" disabled>Please Select City</option>
+                        <option *ngFor="let city of cities" value="{{city.trim()}}">{{city}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class=" block">Country</label>
+                    <select class="form-val block" formControlName="country">
+                        <option value="" disabled>Please Select Country</option>
+                        <option value="India">India</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="block">LandMark(Optional)</label>
+                    <input class="form-val block" type="text" placeholder="Enter Landmark" formControlName="landmark" />
+                </div>
+                <div class="form-group">
+                    <label class="block">Alternate Phone(Optional)</label>
+                    <input type="number" class="form-val block" placeholder="Enter Alternate Phone Number"
+                        formControlName="alternateMobileNo" inputmode="numeric"
+                        oninput="javascript: this.value = this.value.slice(0, this.maxLength)" maxlength="10" />
+                </div>
+                <div class="form-group">
+                    <label class="block type-address">Address Type</label>
+                    <div class="group-v">
+                        <div class="fbox group-h">
+                            <input type="radio" id="home" formControlName="addressType" value="HOME" />
+                            <label for="home" style="display: inline;">
+                                Home(All day delivery)
+                            </label>
+                        </div>
+                        <div class="fbox group-h">
+                            <input type="radio" id="office" formControlName="addressType" value="OFFICE" id="office" />
+                            <label for="office" style="display: inline;">
+                                Work(Delivery between 10AM - 5PM)
+                            </label>
+                        </div>
+                        <div class="fbox group-h">
+                            <input type="radio" id="other" formControlName="addressType" value="OTHER" />
+                            <div></div>
+                            <label for="other" style="display: inline;">
+                                Other
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group fbox-c group-h ">
+                <button type="submit" [disabled]="!addressForm.valid" class="save">
+                    Save
+                </button>
+                <button (click)="emitValue()" class="cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <ngx-spinner bdColor="rgba(17, 16, 16, 0.781)" size="default" type="ball-spin-clockwise">
+        <p style="color: white">Please Wait. </p>
+    </ngx-spinner>
+</section>

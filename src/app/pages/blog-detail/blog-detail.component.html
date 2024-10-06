@@ -1,0 +1,146 @@
+
+<div class="breadcrumbs_area mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+					<ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/blogs"><span itemprop="name">Blogs</span></a><meta itemprop="position" content="2" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">{{blogsData?.blogTitle}}</span><meta itemprop="position" content="3" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Blogs Area -->
+<section class="blogs-main archives single section2">
+    <div class="container">
+     
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <div class="row">
+                    <div class="col-12">
+                    
+                        <div class="container blogdtl">
+                            <article class="entry single-entry entry-fullwidth" itemscope itemtype="https://schema.org/BlogPosting">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="entry-body">
+											<div class="text-center">
+                                                <small itemprop="datePublished" >{{blogsData?.createdAt | date}}</small>    
+                                                <h1 itemprop="headline" class="mb-2">{{blogsData?.blogTitle}}</h1>
+											</div>
+                                            <div class="entry-content editor-content">
+                                                <p innerHTML="{{blogsData?.blogDetails}}"></p>
+                                                <div class="pb-1"></div>
+
+                                                <p innerHTML="{{blogsData?.blogHead1}}"></p>
+                                                <div class="pb-1"></div>
+                                                <img src="{{blogsData?.blogImg1}}" alt="{{blogsData?.blogTitle}}" />
+        
+                                                <div class="pb-1"></div>
+        
+                                                <p innerHTML="{{blogsData?.blogDetails1}}"></p>
+                                                <div class="pb-1"></div>
+
+                                                <p innerHTML="{{blogsData?.blogHead2}}"></p>
+                                                <div class="pb-1"></div>
+                                                <img itemprop="image" src="{{blogsData?.blogImg2}}" alt="{{blogsData?.blogTitle}}"/>
+        
+                                                <div class="pb-1"></div>
+        
+                                                <p innerHTML="{{blogsData?.blogDetails2}}"></p>
+                                                <div class="pb-1"></div>
+
+                                                <p innerHTML="{{blogsData?.blogHead3}}"></p>
+                                                <div class="pb-1"></div>
+                                                <img src="{{blogsData?.blogImg3}}" alt="{{blogsData?.blogTitle}}"/>
+        
+                                                <div class="pb-1"></div>
+        
+                                                <p innerHTML="{{blogsData?.blogDetails3}}"></p>
+                                                <div class="pb-1"></div>
+
+                                                <p innerHTML="{{blogsData?.blogHead4}}"></p>
+                                                <div class="pb-1"></div>
+                                                <img src="{{blogsData?.blogImg4}}" alt="{{blogsData?.blogTitle}}" />
+        
+                                                <div class="pb-1"></div>
+        
+                                                <p innerHTML="{{blogsData?.blogDetails4}}"></p>
+                                                <div class="pb-1"></div>
+
+                                                <p innerHTML="{{blogsData?.blogHead5}}"></p>
+                                                <div class="pb-1"></div>
+                                                <img itemprop="image" src="{{blogsData?.blogImg5}}" alt="{{blogsData?.blogTitle}}"/>
+        
+                                                <div class="pb-1"></div>
+        
+                                                <p innerHTML="{{blogsData?.blogDetails5}}"></p>
+                                                <div class="pb-1"></div>
+
+                                              
+                                                </div>
+        
+                                            <!-- <div class="entry-footer row no-gutters">
+                                                <div class="col">
+                                                    <div class="entry-tags">
+                                                        <span>Tags:</span> <a href="#">photography</a> <a href="#">style</a>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+        
+                                 
+                                </div>
+        
+                               
+                            </article>
+        
+                           
+<!--                          
+                            <div class="reply">
+                                <div class="heading">
+                                    <h3 class="title">Leave A Reply</h3>
+                                    <p class="title-desc">Your email address will not be published. Required fields are marked *</p>
+                                </div>
+        
+                                <form action="#">
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="reply-name" class="sr-only">Name</label>
+                                            <input type="text" class="form-control" id="reply-name" name="reply-name" required="" placeholder="Name *">
+                                        </div>
+        
+                                        <div class="col-md-6">
+                                            <label for="reply-email" class="sr-only">Email</label>
+                                            <input type="email" class="form-control" id="reply-email" name="reply-email" required="" placeholder="Email *">
+                                        </div>
+                                    </div>
+                                    
+                                    <label for="reply-message" class="sr-only">Comment</label>
+                                    <textarea name="reply-message" id="reply-message" cols="30" rows="4" class="form-control" required="" placeholder="Comment *"></textarea>
+        
+
+                                    <button type="submit" class="btn btn-outline-primary-2">
+                                        <span>POST COMMENT</span>
+                                        <i class="icon-long-arrow-right"></i>
+                                    </button>
+                                </form>
+                            </div> -->
+                        </div>
+                        <!--END NEW SINGLE BLOG-->
+
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>      
+    </div>
+</section>
+<!--/ End Blogs Area -->

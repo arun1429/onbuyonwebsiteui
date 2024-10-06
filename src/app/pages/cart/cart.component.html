@@ -1,0 +1,210 @@
+<div class="breadcrumbs_area mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">Shopping Cart</span><meta itemprop="position" content="2" /></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card mb-4">
+    <div class="row"  >
+        <div class="col-md-8 cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col"><h4><b> Cart</b></h4></div>
+                    <div class="col align-self-center text-right text-muted">{{carts.length}} items</div>
+                </div>
+            </div>    
+            <div class="row border-top border-bottom" *ngFor="let cart of carts">
+                <div class="row main align-items-center">
+                    <div class="col-md-6 row">
+                        <img class="img-fluid" style="max-height: 60px;" src="{{cart?.variantImg[0]}}" alt="{{cart?.variantName}}">
+                    <div class="col">
+                        <div class="row text-muted" [routerLink]="['/product-details',cart.variantSlug]">
+                            <strong>{{cart?.productName}}</strong></div>
+                        <div class="row">{{cart?.brand}}</div>
+                    </div>
+                    </div>
+                    <div class="col-md-6 row">
+                        <div class="col">₹{{cart?.offerPrice}}</div>
+                        <div class="col">
+
+                            
+                            <a (click)="increaseDecreaseQuantity(cart,-1,cart.selectQuantity)" class="rounded-left " style="background-color: #f50057;  ">-</a><a  class="border">{{cart?.selectQuantity}} </a>
+                            <a (click)="increaseDecreaseQuantity(cart,1,cart.selectQuantity)" class="rounded-right" style="background-color: #f50057;" >+</a>
+                      
+                        <div class="close pt-2" ><a href="javascript:void(0)"
+                            (click)="removeFromCart(cart._id)">  <span >&#10005;</span></a>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    
+            </div>
+           
+            <div class="back-to-shop"><a routerLink="/">&leftarrow;</a><span routerLink="/" class="text-muted">Back to shop</span></div>
+        </div>
+        <div class="col-md-4 summary">
+            <div><h5><b>Summary</b></h5></div>
+            <hr>
+            <div class="row">
+                <div class="col" style="padding-left:0; margin-bottom: 10px;">ITEMS {{carts.length}}</div>
+                <div class="col text-right">₹{{ cartSum?.toFixed(2) }} </div>
+            </div>
+            <div class="" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="d-flex justify-content-between">
+                    <div class="">Subtotal</div>
+                <div class=" ">₹{{ cartSum?.toFixed(2) }} </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="">Shipping</div>
+                <div class=" "> +₹{{ deliveryCharges?.toFixed(2) }}</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="">Total</div>
+                <div class=" "> ₹{{ cartSum?.toFixed(2) }}</div>
+                </div>
+                
+            </div>
+            <button [routerLink]="['/checkout']"  class="btn">CHECKOUT</button>
+        </div>
+    </div>
+    
+</div>
+
+
+
+<!-- <div class="shopping_cart_area mt-45">
+    <div class="container">
+        <form action="#">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc">
+                        <div class="cart_page table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product_remove">Delete</th>
+                                        <th class="product_thumb">Image</th>
+                                        <th class="product_name">Product</th>
+                                        <th class="product-price">Price</th>
+                                        <th class="product_quantity">Quantity</th>
+                                        <th class="product_total">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr  *ngFor="let cart of carts">
+                                        <td class="product_remove"><a href="javascript:void(0)"
+                                                (click)="removeFromCart(cart._id)"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                        <td class="product_thumb"><a
+                                                [routerLink]="['/product-details',cart.variantSlug]"><img
+                                                    src="{{cart?.variantImg[0]}}" alt="{{cart?.variantName}}"></a></td>
+                                        <td class="product_name">
+                                            <a [routerLink]="['/product-details',cart.variantSlug]">
+                                                <strong>{{cart?.productName}}</strong>
+                                                <p style="color: black; font-weight: bold; margin-bottom: 5px;" *ngIf="(cart?.isBuyOne)">Buy 1 Get 1 </p>
+                                                <p>{{cart?.brand}}</p>
+                                            </a>
+                                        </td>
+                                        <td class="product-price">₹{{cart?.offerPrice}}</td>
+                                        <td class="product_quantity">
+                                           <span class="increase_class" (click)="increaseDecreaseQuantity(cart,-1,cart.selectQuantity)">-</span> {{cart?.selectQuantity}} <span (click)="increaseDecreaseQuantity(cart,1,cart.selectQuantity)" class="increase_class">+</span>
+                                        </td>
+                                        <td class="product_total">₹{{cart?.totalDiscountedPrice.toFixed(2)}}</td>
+                                    </tr>
+                                    <tr  *ngFor="let cart of lastSavedCart">
+                                        <td class="product_remove"><a href="javascript:void(0)"
+                                                (click)="removeFromCartLocal(cart.variantId)"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                        <td class="product_thumb"><a
+                                                [routerLink]="['/product-details',cart.variantSlug]"><img
+                                                    src="{{cart?.variantImg[0]}}" alt="{{cart?.variantName}}"></a></td>
+                                        <td class="product_name">
+                                            <a [routerLink]="['/product-details',cart.variantSlug]">
+                                                <strong>{{cart?.productName}}</strong>
+                                                <p>{{cart?.brand}}</p>
+                                            </a>
+                                        </td>
+                                        <td class="product-price">₹{{cart?.offerPrice.toFixed(2)}}</td>
+                                        <td class="product_quantity">
+                                           <span class="increase_class" (click)="increaseDecreaseQuantity(cart,-1,cart.selectQuantity)">-</span> {{cart?.selectQuantity}} <span (click)="increaseDecreaseQuantity(cart,1,cart.selectQuantity)" class="increase_class">+</span>
+                                        </td>
+                                        <td class="product_total">₹{{cart?.totalDiscountedPrice.toFixed(2)}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div  class="shop_toolbar t_bottom"  *ngIf="carts.length ==0 && lastSavedCart.length ==0">
+                            <img src="assets/img/nocartproduct.png"alt="No Products">
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="coupon_area">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="coupon_code right">
+                            <h3>Cart Totals</h3>
+                            <div class="coupon_inner">
+                                <div class="cart_subtotal">
+                                    <p>Subtotal</p>
+                                    <p class="cart_amount">₹{{ cartSum?.toFixed(2) }}</p>
+                                </div>
+                                <div class="cart_subtotal" *ngIf="appliedPromocode && appliedPromocode.discountName">
+                                    <p>Promo Discount</p>
+                                    <p class="cart_amount">
+                                        <small>({{appliedPromocode?.discountName}})</small>
+                                        -₹{{ totalDiscount?.toFixed(2) }}
+                                    </p>
+                                </div>
+                                <div class="cart_subtotal">
+                                    <p>Shipping</p>
+                                    <p class="cart_amount">
+                                        +₹{{ deliveryCharges?.toFixed(2) }}
+                                    </p>
+                                </div>
+                                <div *ngIf="Cgst>0"  class="cart_subtotal">
+                                    <p>CGST</p>
+                                    <p class="cart_amount">
+                                        ₹{{ Cgst.toFixed(2) }}
+                                    </p>
+                                </div>
+                                
+                                <div *ngIf="Igst>0" class="cart_subtotal">
+                                    <p>IGST</p>
+                                    <p class="cart_amount">
+                                        ₹{{ Igst.toFixed(2)}}
+                                    </p>
+                                </div>
+                                <a href="javascript:void(0)" *ngIf="appliedPromocode && appliedPromocode.discountName"
+                                    (click)="removePromocode()">Remove Promocode to apply another</a>
+
+                                <div class="cart_subtotal">
+                                    <p>Total</p>
+                                    <p class="cart_amount">₹{{ total?.toFixed(2) }}</p>
+                                </div>
+                                <div class="checkout_btn">
+                                    <a [routerLink]="['/checkout']" routerLinkActive="router-link-active">Proceed to
+                                        Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->

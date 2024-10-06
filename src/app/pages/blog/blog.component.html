@@ -1,0 +1,52 @@
+
+<div class="breadcrumbs_area mt-45">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+              <div class="breadcrumb_content">
+					<ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" routerLink="/"><span itemprop="name">home</span></a><meta itemprop="position" content="1" /></li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><span itemprop="name">Blogs</span><meta itemprop="position" content="2" /></li>
+                    </ul>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- Blogs Area -->
+<section class="blogs-main archives section2">
+    <div class="container">
+        <div class="row bloglisting">
+            <div class="col-lg-4 col-md-4 col-12"  *ngFor="let blogs of blogsData">
+                <div class="card blogitem">
+                    <div class="card__img">
+                      <div class="img__cover">
+                        <img src="{{blogs?.blogImg}}" alt="{{blogs?.blogTitle}}"  [routerLink]="['/blogs/',blogs?.blogTitleLink]"  />
+                      </div>
+                    </div>
+                    <small>{{blogs?.createdAt | date}} </small>
+                    <div class="card__text flow">
+                        <h4><a [routerLink]="['/blogs/',blogs?.blogTitleLink]" >{{blogs?.blogTitle}}</a></h4>
+                    </div>
+                  </div>
+            </div>
+            <!-- <nav class="pagination-container">
+                <div class="pagination">
+                        <a class="pagination-newer" href="#">PREV</a>
+                        <span class="pagination-inner">
+                            <a href="#">1</a>
+                            <a class="pagination-active" href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#">6</a>
+                        </span>
+                        <a class="pagination-older" href="#">NEXT</a>
+                </div>
+            </nav> -->
+
+        </div>
+       	
+    </div>
+</section>
+<!--/ End Blogs Area -->

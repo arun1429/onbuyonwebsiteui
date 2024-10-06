@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+.slider_area .owl-theme .owl-dots .owl-dot span {
+    width: 0px !important;
+}
+
+.ngx-pagination .current {
+    background: #000000 !important;
+}
+
+.ngx-pagination li {
+    display: inline-block;
+    border-radius: 3px !important;
+    background: #f1f1f1;
+    margin-left: 3px;
+}
+
+.ngx-pagination .pagination-previous a::before,
+.ngx-pagination .pagination-previous.disabled::before,
+.ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+    content: none !important;
+}
+.single_product {
+    padding: 18px;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    background: #ffffff;
+    max-width: 350px;
+    height: 350px;
+}
+
+.single_product1 {
+    padding: 18px;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    background: #ffffff;
+    height: 350px;
+    margin-left: 18px;
+}

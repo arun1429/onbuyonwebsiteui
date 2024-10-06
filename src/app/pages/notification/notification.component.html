@@ -1,0 +1,40 @@
+<section>
+    <div>
+        <h2 class='headingMarginTop font-size-24'> Notifications</h2>
+    </div>
+    <div class="row" *ngIf="notificationData?.length">
+        <div class="col-md-12"
+            *ngFor="let notification of notificationData | paginate:{ itemsPerPage: 10, currentPage: currentPageNumber }"
+            style="margin-top: 5px;">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <label class="col-md-6">Title</label>
+                        <div class="col-md-6">
+                            {{notification?.title}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-6">Message</label>
+                        <div class="col-md-6">
+                            {{notification?.message}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-6">Date</label>
+                        <div class="col-md-6">
+                            {{notification?.createdAt | date}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shop_toolbar t_botto mt-2">
+        <pagination-controls (pageChange)="currentPageNumber = $event" maxSize="5" previousLabel="Prev"
+            responsive="true" nextLabel="Next"></pagination-controls>
+    </div>
+    <div *ngIf="!notificationData?.length">
+        <p class="text-center">No Data Found</p>
+    </div>
+</section>

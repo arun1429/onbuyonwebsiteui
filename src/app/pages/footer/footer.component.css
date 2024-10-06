@@ -1,0 +1,14 @@
+.groupHeight{
+    height: 210px;
+    overflow: auto;
+}
+.newText{
+    color: #282c3f;
+	text-transform:uppercase;
+	font-size: 13px;
+	font-weight: 600;
+	padding:  12px;
+	position: relative;
+	/*display: block;*/
+	background: transparent;
+}

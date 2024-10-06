@@ -1,0 +1,499 @@
+<div class="order-details">
+    <div class="container">
+        <div>
+            <h4 class="font-size-24 font-weight-700 headingFontSize">
+                My Account - Order Details -{{ myOrderId }}
+            </h4>
+        </div>
+        <ng-container *ngIf="orderData$ | async as orderDetails">
+            <div class="whiteBackground">
+                <div class="displayFlex">
+                    <div>
+                        <label class="font-size-18">Order Status - {{ orderDetails.status }}</label
+            >
+          </div>
+          <div [hidden]="orderDetails.orderStatus===1 || orderDetails.orderStatus===2 || orderDetails.orderStatus===8 || orderDetails.orderStatus===5">
+            <a class="font-size-18" (click)="scrollDiv(orderID)">See Invoice</a>
+            &nbsp; &nbsp;
+            <a href="https://api.toq.co.in/api/vendor/invoice?orderId={{orderDetails.orderId}}" target="_blank"  download="pdf" class="font-size-18">Download Invoice</a
+            >
+          </div>
+        </div>
+        <ng-container *ngFor="let product of orderDetails.productDetails">
+          <div class="grid bottomBorder">
+            <div>
+              <img [src]="product.variantImg[0]" class="productImageSize" alt="{{product?.variantName}}"/>
+            </div>
+            <div>
+              <div>
+                <label>{{ product.productName }} {{ product.size }}</label>
+                    </div>
+                </div>
+                <div>
+                    <label>&#8377; {{ product.OfferPrice?.toFixed(2) }} *
+                {{ product.quantity }}</label
+              >
+            </div>
+           <div *ngIf="orderDetails.orderStatus ===4">
+            <div *ngIf="!(product.exchange || product.refund)">
+              <label><button type="button" class="btn btn2 btn-primary"
+                  (click)=" exchangeProduct( orderDetails.orderId, product.productId, product.variantId)">Exchange
+                </button></label >
+              <label>
+                <button 
+                  type="button" 
+                  class="btn btn2 btn-info"
+                  (click)="
+                    refundProduct(
+                      orderDetails.orderId,
+                      product.productId,
+                      product.variantId
+                    )
+                  "
+                >
+                  Refund
+                </button></label
+              >
+            </div>
+            <div *ngIf="product.exchange || product.refund">
+              <label *ngIf="product?.exchange?.status =='open'">
+                  <span>Exchange requested</span>
+                  <br>
+                  <span>Reason : {{product.exchange.reason}}</span>
+              </label>
+                    <label *ngIf="product?.exchange?.status =='close'">
+                      <span>Exchange Completed</span>
+                      <br>
+                      <span>Reason : {{product.exchange.reason}}</span>
+                      </label>
+                    <label *ngIf="product.refund?.status =='open'">
+                      <span>Refund requested</span>
+                      <br>
+                      <span>Reason : {{product.refund.reason}}</span>
+                  </label>
+                    <label *ngIf="product.refund?.status =='close'">
+                      <span>Refund completed</span>
+                      <br>
+                      <span>Reason : {{product.refund.reason}}</span>
+                      </label>
+                </div>
+           </div>
+
+                <!-- <div>
+                            <table class="striped">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Unit</th>
+                                </tr>
+                                <tr *ngFor="let attribute of product.attributes">
+                                    <td>{{attribute?.name}}</td>
+                                    <td>{{attribute?.value}} {{attribute?.unit}}</td>
+                                </tr>
+                            </table>
+                        </div> -->
+            </div>
+        </ng-container>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="bottomBorder">
+                    <div class="sectionHeading">Delivery Address</div>
+                    <div class="addressDiv">
+                        <label>Name</label> :
+                        <label>{{ orderDetails.shipingAddress.fullName }}</label>
+                    </div>
+                    <div class="addressDiv">
+                        <label>Address</label> :
+                        <label>{{ orderDetails.shipingAddress.streetAddress }}
+                  {{ orderDetails.shipingAddress.city }}
+                  {{ orderDetails.shipingAddress.state }}
+                  {{ orderDetails.shipingAddress.country }}-{{
+                    orderDetails.shipingAddress.pinCode
+                  }}</label
+                >
+              </div>
+              <div class="addressDiv">
+                <label>Landmark</label> :
+                        <label>{{ orderDetails.shipingAddress.landmark }}</label>
+                    </div>
+                    <div class="addressDiv">
+                        <label>Mobile Number</label> :
+                        <label>{{ orderDetails.shipingAddress.mobileNo }}</label>
+                    </div>
+                    <div class="addressDiv">
+                        <label>Alternate Number</label> : &nbsp;
+                        <label>{{ orderDetails.shipingAddress.alternateMobileNo ?orderDetails.shipingAddress.alternateMobileNo :'-'  }}</label>
+                    </div>
+                    <div class="addressDiv">
+                      <label>GST</label> : &nbsp;
+                      <label>{{ orderDetails.shipingAddress.userGst ?orderDetails.shipingAddress.userGst.toFixed(2) :'-'  }}</label>
+                  </div>
+
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="bottomBorder">
+                    <div class="sectionHeading">Billing Address</div>
+                    <div class="addressDiv">
+                        <label>Name</label> :
+                        <label>{{ orderDetails.billingAddress.fullName }}</label>
+                    </div>
+                    <div class="addressDiv">
+                        <label>Address</label> :
+                        <label>{{ orderDetails.billingAddress.streetAddress }}
+                  {{ orderDetails.billingAddress.city }}
+                  {{ orderDetails.billingAddress.state }}
+                  {{ orderDetails.billingAddress.country }}-{{
+                    orderDetails.billingAddress.pinCode
+                  }}</label
+                >
+              </div>
+              <div class="addressDiv">
+                <label>Landmark</label> :
+                        <label>{{ orderDetails.billingAddress.landmark }}</label>
+                    </div>
+                    <div class="addressDiv">
+                        <label>Mobile Number</label> :
+                        <label>{{ orderDetails.billingAddress.mobileNo }}</label>
+                    </div>
+                    <div class="addressDiv">
+                        <label>Alternate Number</label> : &nbsp;
+                        <label>{{ orderDetails.billingAddress.alternateMobileNo?orderDetails.billingAddress.alternateMobileNo:'-' }}</label>
+                    </div>
+                    <div class="addressDiv">
+                      <label>GST</label> : &nbsp;
+                      <label>{{ orderDetails.billingAddress.userGst ?orderDetails.billingAddress.userGst.toFixed(2) :'-'  }}</label>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottomBorder">
+            <div class="sectionHeading">Payment Method</div>
+            <div class="addressDiv">
+                <label>Payment mode</label> :
+                <label *ngIf="orderDetails?.paymentMethod == 'cod'">Cash on Delivery or Pay on Delivery</label>
+                <label *ngIf="orderDetails?.paymentMethod != 'cod'">{{ orderDetails.paymentMethod }}</label>
+            </div>
+        </div>
+        <div class="bottomBorder" id="{{ orderDetails.orderId }}">
+            <div class="text-align-center sectionHeading">Invoice</div>
+            <div>
+                <div>Sold By - On Buy On</div>
+            </div>
+
+            <div class="grid">
+                <div>
+                    <div>
+                        <label><b>Order Id - {{ myOrderId }}</b></label
+                >
+              </div>
+              <div>
+                <label
+                  ><b
+                    >Order Date - {{ orderDetails.createdAt | date }}</b
+                  ></label
+                >
+              </div>
+              <div>
+                <label
+                  ><b
+                    >Invoice Date - {{ orderDetails.createdAt | date }}</b
+                  ></label
+                >
+              </div>
+              <div>
+                <!-- <label
+                  ><b
+                    >Delivery Charge - {{ orderDetails.shippingCharge }}</b
+                  ></label -->
+                
+              </div>
+            </div>
+            <div>
+              <div class="font-size-18"><b>Bill To</b></div>
+              <div>
+                <b>{{ orderDetails.billingAddress.fullName }}</b>
+              </div>
+              <label
+                >{{ orderDetails.billingAddress.flatNo }}
+                {{ orderDetails.billingAddress.streetAddress }}
+                {{ orderDetails.billingAddress.city }}
+                {{ orderDetails.billingAddress.state }}<br />{{
+                  orderDetails.billingAddress.country
+                }}-{{ orderDetails.billingAddress.pinCode }}</label
+              >
+              <div>
+                <label>Landmark  : </label>&nbsp;
+                        <label>{{ orderDetails.billingAddress.landmark }}</label>
+                    </div>
+                    <div>
+                        <label>Mobile Number:</label>
+                        <label>{{ orderDetails.billingAddress.mobileNo }}</label>
+                    </div>
+                    <div>
+                        <label>Alternate Number :</label> &nbsp;
+                        <label>{{ orderDetails.billingAddress.alternateMobileNo ?orderDetails.billingAddress.alternateMobileNo:'-' }}</label>
+                    </div>
+                    <div >
+                      <label>GST</label> : &nbsp;
+                      <label>{{ orderDetails.billingAddress.userGst ?orderDetails.billingAddress.userGst.toFixed(2) :'-'  }}</label>
+                  </div>
+                </div>
+                <div>
+                    <div class="font-size-18"><b>Ship To</b></div>
+                    <div>
+                        <b>{{ orderDetails.shipingAddress.fullName }}</b>
+                    </div>
+                    <label>{{ orderDetails.shipingAddress.flatNo
+                }}{{ orderDetails.shipingAddress.streetAddress }}
+                {{ orderDetails.shipingAddress.city }}
+                {{ orderDetails.shipingAddress.state }}<br />{{
+                  orderDetails.shipingAddress.country
+                }}-{{ orderDetails.shipingAddress.pinCode }}</label
+              >
+              <div>
+                <label>Landmark : </label>&nbsp;
+                    <label>{{ orderDetails.shipingAddress.landmark }}</label>
+                </div>
+                <div>
+                    <label>Mobile Number:</label>
+                    <label>{{ orderDetails.shipingAddress.mobileNo }}</label>
+                </div>
+                <div>
+                    <label>Alternate Number : </label>&nbsp;
+                    <label>{{ orderDetails.shipingAddress.alternateMobileNo?orderDetails.shipingAddress.alternateMobileNo:'-' }}</label>
+                </div>
+                <div >
+                  <label>GST</label> : &nbsp;
+                  <label>{{ orderDetails.shipingAddress.userGst ?orderDetails.shipingAddress.userGst.toFixed(2) :'-'  }}</label>
+              </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label>Total Items:</label> &nbsp;
+                <label>{{ orderDetails.productDetails.length }}</label>
+            </div>
+        </div>
+        <div>
+            <table >
+                <tr>
+                    <!-- <th>Product Image</th> -->
+                    <th style='text-align:center'>Product</th>
+                    <th style='text-align:center'>Quantity</th>
+                    <th style='text-align:center'>Gross Amount</th>
+                    <th style='text-align:center'>Discount</th>
+                    <th style='text-align:center'>Total</th>
+                </tr>
+                <ng-container *ngFor="let product of orderDetails.productDetails">
+                    <tr>
+                      <!-- <td><img [src]="product.variantImg[0]" style='height:auto;width: 100px;'></td> -->
+                        <td style='text-align:center' class="productNameData font-size-18">
+                            <b>{{ product.productName }}</b>
+                        </td>
+                        <td style='text-align:center'>{{ product.quantity }}</td>
+                        <td style='text-align:center'>
+                            &#8377; {{ product.price?.toFixed(2) * product.quantity }}
+                        </td>
+                        <td style='text-align:center'>
+                            &#8377;{{ (product.price.toFixed(2) - product.OfferPrice.toFixed(2)) * product.quantity }}
+                        </td>
+                        <td style='text-align:center'>&#8377;{{ product.TotalPrice.toFixed(2) }}</td>
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+          <div class="text-align-right" style="margin-right: 30px">
+            <label class="font-size-16">Sub Total</label> &nbsp;&nbsp;&nbsp;
+            <label class="font-size-16">&#8377; {{ orderDetails.subTotal?.toFixed(2) }}</label
+            >
+          </div>
+          <div *ngIf="orderDetails.convenienceFee>0" class="text-align-right" style="margin-right: 30px">
+            <label class="font-size-16">Convenience Fee</label> &nbsp;&nbsp;&nbsp;
+            <label class="font-size-16">&#8377; {{ orderDetails.convenienceFee?.toFixed(2) }}</label
+            >
+          </div>
+          <div *ngIf="orderDetails.cgst>0" class="text-align-right" style="margin-right: 30px">
+            <label class="font-size-16">CGST</label> &nbsp;&nbsp;&nbsp;
+            <label class="font-size-16">&#8377; {{ orderDetails.cgst?.toFixed(2) }}</label
+            >
+          </div>
+          <div *ngIf="orderDetails.igst>0" class="text-align-right" style="margin-right: 30px">
+            <label class="font-size-16">IGST</label> &nbsp;&nbsp;&nbsp;
+            <label class="font-size-16">&#8377; {{ orderDetails.igst?.toFixed(2) }}</label
+            >
+          </div>
+          <div *ngIf="orderDetails.sgst>0" class="text-align-right" style="margin-right: 30px">
+            <label class="font-size-16">SGST</label> &nbsp;&nbsp;&nbsp;
+            <label class="font-size-16">&#8377; {{ orderDetails.sgst?.toFixed(2) }}</label
+            >
+          </div>
+          <div class="text-align-right" style="margin-right: 30px">
+            <label class="font-size-16">Shipping Charge </label> &nbsp;&nbsp;&nbsp;
+            <label class="font-size-16">&#8377; {{ orderDetails.shippingCharge?.toFixed(2) }}</label
+            >
+          </div>
+          <div class="text-align-right" style="margin-right: 30px" *ngIf="orderDetails.promoDiscount>0">
+            <label class="font-size-16">Discount ({{ orderDetails.promoCodeName }}) </label> &nbsp;&nbsp;&nbsp;
+            <label class="font-size-16"> -&#8377;{{ orderDetails.promoDiscount?.toFixed(2) }} </label
+            >
+          </div>
+          <div class="text-align-right" style="margin-right: 30px">
+            <label class="font-size-16">Grand Total (Including GST)</label> &nbsp;&nbsp;&nbsp;
+            <label class="font-size-16">&#8377; {{ orderDetails.grandAmount?.toFixed(2) }}</label
+            >
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exchangeModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Exchange Product</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" [formGroup]="exchangeFormGroup">
+          <div class="form-group">
+            <label class="col-form-label" for="reason">Reason</label>
+            <div class="row">
+                <ng-container *ngFor="let list of exchangeReason">
+                    <div class="col-md-4">
+                        <div class="boxDiv" id="exchange{{ list.id }}" (click)="selectExchangeReason(list)">
+                            {{ list.name }}
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <!-- <div class="col-md-9"> -->
+            <!-- <input type="text" id="reason" class="form-control" placeholder="Enter Reason" formControlName="reason"> -->
+            <!-- </div> -->
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="comment">Comment</label>
+            <!-- <div class="col-md-9"> -->
+            <input type="text" id="comment" class="form-control" placeholder="Enter comment" formControlName="comment" />
+            <!-- </div> -->
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="emailId">Image</label>
+            <div class="col-md-9">
+                <ngx-dropzone (change)="onSelectExchange($event)" [multiple]="false" [accept]="'image/*'" [expandable]="true">
+                    <ngx-dropzone-label>Drop here Or Click here</ngx-dropzone-label>
+                    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of exchangeFiles" [file]="f" [removable]="true" (removed)="onRemoveExchange(f)">
+                    </ngx-dropzone-image-preview>
+                </ngx-dropzone>
+            </div>
+            <div class='col-md-12'>
+              <span style="font-size: 12px;color: red; margin-top:10px;">Please upload minimum three clear and original images of product delivered to avoid rejection of your request.</span>
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="emailId">Video</label>
+          <div class="col-md-9">
+              <ngx-dropzone (change)="onSelectExchangeVideo($event)" [multiple]="false" [accept]="'video/*'" [expandable]="true">
+                  <ngx-dropzone-label>Drop here Or Click here</ngx-dropzone-label>
+                  <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of exchangeFilesVideo" [file]="f" [removable]="true" (removed)="onRemoveExchangeVideo(f)">
+                  </ngx-dropzone-video-preview>
+              </ngx-dropzone>
+          </div>
+      </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="exchange()">
+          Exchange
+        </button>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="modal fade" id="refundModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Refund Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" [formGroup]="refundFormGroup">
+                    <div class="form-group">
+                        <label class="col-form-label" for="reason">Reason</label>
+                        <div class="row">
+                            <ng-container *ngFor="let list of refundReason">
+                                <div class="col-md-4">
+                                    <div class="boxDiv" id="refund{{ list.id }}" (click)="selectRefundReason(list)">
+                                        {{ list.name }}
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="comment">Comment</label>
+                        <!-- <div class="col-md-9"> -->
+                        <input type="text" id="comment" class="form-control" placeholder="Enter Comment" formControlName="comment" />
+                        <!-- </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label class="col-form-label" for="emailId">Image</label>
+                        <div class="col-md-9">
+                            <ngx-dropzone (change)="onSelectRefund($event)" [multiple]="false" [accept]="'image/*'" [expandable]="true">
+                                <ngx-dropzone-label>Drop here Or Click here</ngx-dropzone-label>
+                                <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of refundFiles" [file]="f" [removable]="true" (removed)="onRemoveRefund(f)">
+                                </ngx-dropzone-image-preview>
+                            </ngx-dropzone>
+                        </div>
+                        <div class='col-md-12'>
+                          <span style="font-size: 12px;color: red; margin-top:10px;">Please upload minimum three clear and original images of product delivered to avoid rejection of your request.</span>
+            
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label" for="emailId">Video</label>
+                        <div class="col-md-9">
+                            <ngx-dropzone (change)="onSelectRefundVideo($event)" [multiple]="false" [accept]="'video/*'" [expandable]="true">
+                                <ngx-dropzone-label>Drop here Or Click here</ngx-dropzone-label>
+                                <ngx-dropzone-video-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of refundFilesVideo" [file]="f" [removable]="true" (removed)="onRemoveRefundVideo(f)">
+                                </ngx-dropzone-video-preview>
+                            </ngx-dropzone>
+                        </div>
+                      
+                      </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+                <button type="button" class="btn btn-primary" (click)="refund()">
+          Refund
+        </button>
+            </div>
+        </div>
+    </div>
+</div>

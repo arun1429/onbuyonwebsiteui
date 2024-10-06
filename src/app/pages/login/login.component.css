@@ -1,0 +1,24 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.p-viewer {
+	z-index: 9999;
+	position: absolute;
+	top: 54%;
+	right: 50px;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+@media only screen and (max-width: 767px) {
+}
+@media only screen and (max-width: 480px) {
+  .addtopspace {
+      margin-top: 20px;
+  }
+}

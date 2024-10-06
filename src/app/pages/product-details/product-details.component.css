@@ -1,0 +1,215 @@
+.product_details .col-md-2.ng-star-inserted{padding: 0;} 
+.single_product {
+  height: 300px;
+  
+}
+.product_thumb .product_name{padding: 5px 0 0 0; margin-bottom: 0;}
+.text-bold{ font-weight: bold;margin-top: 0px;}
+.text-bold2{ font-weight: bold;margin-top: 5px;}
+.saleBtn{ background: #dd1567; color:#fff;  border-radius: 20px; padding: 4px 15px;}
+.form-control {font-size: .9rem;}
+
+.sliderBanDesk{display: block!important;}
+.sliderBanMobile{display: none!important;}
+
+@media screen and (max-width: 767px) {
+  .product_variant.quantity button{    padding: 0 15px;}
+}
+
+@media screen and (max-width: 600px) {
+  /* .small-img {
+    height:84px; width:150px; object-fit: cover;
+  } */
+.sliderBanDesk{display: none!important;}
+.sliderBanMobile{display: block!important;}
+.text-bold{ font-weight: bold;margin-top: 15px;}
+.text-bold2{ font-weight: bold;margin-top: 10px;}
+}
+.svgActive{
+    color:#f9ba48;
+  }
+  .product_rating_inactive {
+    margin-bottom: 11px;
+  }
+  .product_rating_inactive ul {
+    display: flex;
+  }
+  .product_rating_inactive ul li {
+    line-height: 23px;
+    margin-right: 3px;
+  }
+  .product_rating_inactive ul li:last-child {
+    margin-right: 0;
+  }
+  .product_rating_inactive ul li a {
+    font-size: 12px;
+    color: #7d7d7d ;
+}
+.isDisabled:hover{
+    cursor: not-allowed;
+    background: #363f4d;
+}
+
+/* Chrome, Safari, Edge, Opera */
+.arrow input::-webkit-outer-spin-button,
+.arrow input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.arrow input[type=number] {
+  -moz-appearance: textfield;
+}
+  .product_variant.quantity button {
+    border: 0;
+    font-size: 16px;
+    margin-left: 20px;
+    background: #000000;
+    height: 42px;
+    line-height: 42px;
+    text-transform: capitalize;
+}
+@media screen and (max-width: 600px) {
+  .product_variant.quantity button {
+    border: 0;
+    font-size: 12px;
+    margin-left: 5px;
+    background: #000000;
+    height: 42px;
+    line-height: 42px;
+    text-transform: capitalize;
+}
+  }
+  @media screen and (max-width: 500px) {
+
+    .single_product{height: 224px;}
+    .single_product1{height: 224px;padding: 6px;}
+  }    
+  @media screen and (max-width: 600px) {
+    .product_variant.quantity button{    padding: 0 10px;}
+  }
+  @media screen and (max-width: 359px) {
+    .product_variant.quantity button{    padding: 0 6px;}
+  }
+
+.cart_icon{
+  /* color: whitesmoke; */
+  color: #000000;
+  font-size: 18px;
+  cursor: pointer;
+}
+.cart_icon_remove{
+  color: #d43215;
+  font-size: 18px;
+  cursor: pointer;
+}
+.gqoute
+{
+  display: table;
+  margin: 0 0 15px 12rem;
+}
+.gqoute button
+{
+  border: none;
+}
+.activeClass{
+  color:#f9ba48!important;
+}
+.deactiveClass{
+  color:#cccccc;
+}
+.pcs {
+  color: #dd1567;
+  margin-left: 10px;
+  font-size: 20px;
+}
+.select {
+  width: 100%;
+    padding: 0px 10px 0px;
+    font-size: 13px;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    height: 50px;
+    background: url("/assets/img/icons8-dropdown-20.png") no-repeat right #dd1567;
+    -webkit-appearance: none;
+    background-position-x: 98%;
+}
+.selectcard {
+  width: 100%;
+    padding: 0px 10px 0px;
+    font-size: 13px;
+    border: 1;
+    border-radius: 5px;
+    border-color: #000;
+    color: #000;
+    height: 50px;
+    background: url("/assets/img/icons8-dropdown-black.png") no-repeat right #fff;
+    -webkit-appearance: none;
+    background-position-x: 98%;
+    
+}
+.form-group-child {
+  margin-bottom: 1px
+}
+.image-slide .owl-nav{
+  display: none;
+
+}
+
+.form-group-child label {
+  font-weight: 500;
+  text-transform: capitalize;
+  font-size: 14px;
+  margin-bottom: 0;
+}
+.form-group-child input{
+   width: 100%;
+    border: 1px solid #000;
+    background: none;
+    height: 42px;
+    padding: 0 12px;
+    border-radius: 5px;
+} 
+
+.testbutton {
+  font-family: arial;
+  color: #FFFFFF !important;
+  font-size: 14px;
+  text-shadow: 1px 1px 0px #FFFFFF;
+  box-shadow: 1px 1px 1px #BEE2F9;
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: 0px solid #3866A3;
+  background: #DD1567;
+}
+.testbutton:hover {
+  color: #F7F7F7 !important;
+  background: #C4135C;
+}
+
+.owl-prev {
+  width: 15px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  margin-left: -20px;
+  display: block !important;
+  border:0px solid black;
+}
+
+.owl-next {
+  width: 15px;
+  height: 100px;
+  position: absolute;
+  top: 40%;
+  right: -25px;
+  display: block !important;
+  border:0px solid black;
+}
+.owl-prev i, .owl-next i {transform : scale(1,6); color: #ccc;}
+
+.small-img {
+  height:94px; width:150px; object-fit: cover;
+}

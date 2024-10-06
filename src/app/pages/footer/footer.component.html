@@ -1,0 +1,138 @@
+<!--footer area start-->
+<footer class="footer_widgets footer_three">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-8 col-sm-12">
+                    <div class="widgets_container contact_us">
+                        <h3>Contact Info</h3>
+                        <div class="footer_contact">
+                            <p>
+                                <a href="javascript:void(0)">
+                                    {{contactDetails?.mobileNo?contactDetails?.shopName:'--'}}
+                                </a>
+                            </p>
+                           
+                            <p>
+                                <a href="https://api.whatsapp.com/send?phone={{contactDetails?.mobileNo}}&text=Hi">
+                                    WhatsApp Us
+                                </a>
+                            </p>
+                            <p>
+                                <a href="javascript:void(0)"> {{contactDetails?.vendorEmailId?contactDetails?.vendorEmailId:'--'}}
+                                </a>
+                            </p>
+                            <p>{{contactDetails?.shopAddress?contactDetails.shopAddress.address:'--'}}</p>
+                        </div>
+                        <ul class="footer_social row" itemscope itemtype="https://www.schema.org/SiteNavigationElement">
+                            <li itemprop="name" style=" margin-right: 10px; margin-left: 10px;"><a itemprop="url" href="{{socialDetails?.twitterUrl}}" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></li>
+                            <li itemprop="name" style=" margin-right: 10px;"><a itemprop="url" href="{{socialDetails?.facebookUrl}}" target="_blank"><i class="fa fa-facebook fa-2x"></i></a></li>
+                            <li itemprop="name" style=" margin-right: 10px;"><a itemprop="url" href="{{socialDetails?.linkedinUrl}}" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a></li>
+                            <li itemprop="name" style=" margin-right: 10px;"><a itemprop="url" href="{{socialDetails?.youtubeUrl}}" target="_blank"><i class="fa fa-youtube fa-2x"></i></a></li>
+                            <li itemprop="name" style=" margin-right: 10px;"><a itemprop="url" href="{{socialDetails?.instagramUrl}}" target="_blank"><i class="fa fa-instagram fa-2x"></i></a></li>
+                            <li itemprop="name" style=" margin-right: 10px;"><a itemprop="url" href="{{socialDetails?.pinterestUrl}}" target="_blank"><i class="fa fa-pinterest fa-2x"></i></a></li>
+                        </ul>  
+                       
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="widgets_container contact_us">
+                        <h3>Company Information</h3>
+                        <div class="footer_menu">
+                            <ul itemscope itemtype="https://www.schema.org/SiteNavigationElement">
+                                <li itemprop="name">
+                                    <a itemprop="url" [routerLink]="['/']" routerLinkActive="router-link-active">
+                                        Home
+                                    </a>
+                                </li>
+                                <li itemprop="name">
+                                    <a itemprop="url" [routerLink]="['/about-us']" routerLinkActive="router-link-active">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li itemprop="name">
+                                    <a itemprop="url" [routerLink]="['/terms-conditions']" routerLinkActive="router-link-active">
+                                        Terms & Conditions
+                                    </a>
+                                </li>
+                                <li itemprop="name">
+                                    <a itemprop="url" [routerLink]="['/privacy-policy']" routerLinkActive="router-link-active">
+                                        Privacy Policy
+                                    </a>
+                                </li>
+                                <li itemprop="name">
+                                    <a itemprop="url" [routerLink]="['/return-policy']" routerLinkActive="router-link-active">
+                                        Shipping & Return Policy
+                                    </a>
+                                </li>
+                                
+                                <li itemprop="name">
+                                    <a itemprop="url" [routerLink]="['/faq']" routerLinkActive="router-link-active">
+                                        FAQ
+                                    </a>
+                                </li>                               
+                                <li itemprop="name">
+                                    <a itemprop="url" [routerLink]="['/blogs']" routerLinkActive="router-link-active">
+                                        Blogs
+                                    </a>
+                                </li>
+                                <li itemprop="name">
+                                    <a itemprop="url" [routerLink]="['/allvendors']" routerLinkActive="router-link-active">
+                                        All Vendors
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                   
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="widgets_container contact_us ">
+                        <h3>Contact Us</h3>
+                        <div class="contact_message form">
+                            <form id="contact-form" [formGroup]="contactUsForm" (ngSubmit)="contactUs()">
+                                <p>
+                                    <input name="name" placeholder="Name *" formControlName="name" type="text">
+                                </p>
+                                <p>
+                                    <input name="email" placeholder="Email *" formControlName="email" type="email">
+                                </p>
+                                <p>
+                                    <input name="description" placeholder="Enter Query *" formControlName="description" type="text">
+                                </p>
+                                <button type="submit" [disabled]="!contactUsForm.valid"> Send</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="image-container image-3">
+                    <img  src="assets/img/payment.png" alt="Payment Methods">
+</div>
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="copyright_area" style="text-align: center; margin-left: 8px;" *ngFor="let footerItem of allFooterList">
+                     <a href="{{footerItem?.keywordsTitleLink}}" >  <p > {{footerItem?.keywordsTitle}} |</p></a> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12 col-md-12">
+                    <div class="copyright_area" style="text-align: center;">
+                        <p>Copyright &copy; 2024 <a href="#">OnBuyOn Powered By B Da 1st one</a> All Rights Reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--footer area end-->

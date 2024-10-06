@@ -1,0 +1,8 @@
+<ng-container *ngIf="addEditAddress === false">
+    <app-address-list (getAddressFormChangeEvent)="getAddressFormChangeEvent($event)"
+        (sendEditAddress)="sendEditAddress($event)"></app-address-list>
+</ng-container>
+<ng-container *ngIf="addEditAddress === true">
+    <app-add-address (emitSuccessFlagForAddress)="getAddressFormChangeEvent($event)" [address]="address">
+    </app-add-address>
+</ng-container>

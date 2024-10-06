@@ -1,0 +1,119 @@
+.dropIndex{
+    cursor: pointer;
+    float: right;
+    background: #000000;
+    width: 25px;
+    height: 25px;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    margin-top: -30px;
+}
+.product_content  .product_name h4 {line-height: 1em;
+    max-height: 2em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden !important;
+    -webkit-line-clamp: 2;}
+.readmoreBtn{ background: #dd1567; color:#fff; border-radius: 20px; padding: 4px 15px; }
+.section_content{ width: 100%; position: relative; 
+    margin-bottom: 10px;
+    line-height: 16px; height: 150px; overflow: hidden;}
+
+    
+.show {
+    overflow: visible;
+    height: auto;
+  }
+.button {
+  font-size: 13px;
+  color: #000;
+  }
+.product-grid
+{
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    grid-column-gap: 4%;
+}
+.product-grid-item
+{
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    background: #ffffff;
+    height: auto;
+    margin: 0 0 30px;
+}
+.product-grid-item .single_product
+{
+    height: auto;
+    border: none;
+}
+.itemimgdiv
+{
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    background: #f9f9f9 !important;
+}
+.itemimgdiv img.itemsimg
+{
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    width: auto;
+    margin: 0;
+    display: block;
+}
+.pcs {
+    color: tomato;
+    font-size: 15px;
+}
+
+@media all and (max-width:768px) and (min-width:641px)
+{
+.product-grid 
+{
+    display: grid;
+    grid-template-columns: 48% 48%;
+    grid-column-gap: 4%;
+}
+}
+
+@media all and (max-width:640px) and (min-width:100px)
+{
+    .product-grid 
+    {
+        display: grid;
+        grid-template-columns: 48% 48%;
+        grid-column-gap: 3%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .shop_area.shop_reverse.mt-45.mb-50{ margin-top: 10px!important;}
+    .shop_area .col-lg-9.col-md-3.col-12{ flex: 0 0 50%; max-width: 50%; padding-right: 7px; padding-left: 7px;}
+    .itemimgdiv{    height: 124px;}
+    .price_box span { font-size: 12px!important; }
+    .shop_wrapper .single_product{height: 265px; margin-bottom: 15px!important;}
+}
+.widgets_container h3 {
+	font-size: 14px;
+	line-height: 18px;
+	margin-bottom: 28px;
+	text-transform: uppercase;
+	font-family: sans-serif;
+	letter-spacing: 0.5px !important;
+	font-weight: bold;
+	color: #000000;
+}
+ .footer_contact p {
+    color: #363f4d;
+}
+
+ .footer_contact p a:hover {
+    color: #000000;
+}

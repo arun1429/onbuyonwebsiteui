@@ -1,0 +1,60 @@
+<div class="breadcrumbs_area mt-45">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a routerLink="/">home</a></li>
+                        <li>All Vendors</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="shop_area shop_reverse mt-45 mb-50">
+    <div class="container">
+        <div class="row">
+            
+          
+            <div class="col-lg-12 col-md-12">
+                <div class="product-grid">
+                    <ng-container *ngFor="let vendor of allvendors">
+                        
+                        <div class="product-grid-item" >
+                    
+                        <article class="single_product" >
+                            <figure>
+                                <div class="product_thumb">
+                                    <a class="primary_img" [routerLink]="['/vendors/all',vendor?.shopName]" >
+                                        <div class="itemimgdiv">
+                                            <img src="{{vendor?.profileImg}}" alt="{{vendor?.shopName}}" class="itemsimg">
+                                        </div>
+                                    </a>
+                                    <div class="quick_button">
+                                        <a (click)="viewVendor(vendor?.shopName)" title="View Vendor"> View Vendor</a>
+                                    </div>
+                                </div>
+                                <div class="product_content">
+                                    <div class="product_name">
+                                        <h4>
+                                            <a
+                                            [routerLink]="['/vendors/all',vendor?.shopName]">{{vendor?.shopName}}</a>
+                                        </h4>
+                                    </div>
+                                    <div class="price_box">
+                                        <span class="current_price">{{vendor?.vendorName}}</span>&nbsp;
+                                        <span class="current_price">{{vendor?.shopAddress.address}} {{vendor?.shopAddress.city}} {{vendor?.shopAddress.state}} {{vendor?.shopAddress.pincode}}</span>&nbsp;
+                                    </div>
+                                </div>
+                            </figure>
+                        </article>
+                    </div>
+                </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

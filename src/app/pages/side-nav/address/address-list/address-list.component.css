@@ -1,0 +1,48 @@
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    grid-gap: 1em;
+  }
+  
+  svg{
+    width: 25px;
+    display: inline-block;
+    cursor: pointer;
+    margin: 8px 14px 0 0;
+  }
+  .fbox-fe.group-h div{
+    display: inline-block;
+  }
+  .card header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 1em;
+    background: #000000;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 2px solid #dd1567;
+}
+.content {
+  padding: 15px;
+}
+.card.clickable.fbox-c{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.card.clickable.fbox-c h1{
+  font-size: 18px;
+  font-weight: 500;
+}
+
+svg:hover{
+  fill: #000000;
+}
+
+@media only screen and (max-width: 767px){
+  .grid{display: block;}
+}
